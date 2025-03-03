@@ -29,7 +29,7 @@
             <a-space :size="8"> <svg-icon icon="complete" :size="20" />已处理</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="cardList.processedNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="cardList.dealNum" :duration="2200" />
             <span class="suffix"></span>
           </div>
         </div>
@@ -83,14 +83,16 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     sendTitle(title, key) {
       this.$emit('sendTitle', title, key);
-    }
+    },
   }
 };
 </script>
+
 <style lang="scss" scoped>
 @import '../../../styles/mixin';
 .main-box{

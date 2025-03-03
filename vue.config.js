@@ -20,16 +20,14 @@ const cdn = {
   }
 };
 
-console.log(process.env["VUE_APP_BASE_API "])
-
 module.exports = {
   productionSourceMap: false,
   outputDir: 'dist',
   publicPath: './',
   lintOnSave: false,
   devServer: {
-    port: 8999,
     open: true,
+    port:8082,//这个是项目启动占用哪个端口
     overlay: {
       warnings: false,
       errors: true
@@ -37,19 +35,18 @@ module.exports = {
     before: !isProd ? require('./mock/mock-server.js') : '',
     proxy: {
       '/api': {
-        target: process.env.VUE_APP_BASE_API,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
+       /*  target: 'http://localhost:8080', */
+        target:'http://10.172.2.167:8080/',
+        /*    target: 'http://120.46.159.231:8088/2022212869', */
+        changeOrigin: true
       },
-      '/mock': {
+/*       '/mock': {
         target: 'http://localhost:8999',
         changeOrigin: true,
         pathRewrite: {
           '^/mock': ''
         }
-      }
+      } */
     }
   },
   css: {
@@ -73,10 +70,7 @@ module.exports = {
     config.plugins.delete('prefetch');
     config.plugins.delete('preload');
     // 设置svg
-    config.module
-      .rule('svg')
-      .exclude.add(resolve('src/icons'))
-      .end();
+    config.module.rule('svg').exclude.add(resolve('src/icons')).end();
     config.module
       .rule('icons')
       .test(/\.svg$/)

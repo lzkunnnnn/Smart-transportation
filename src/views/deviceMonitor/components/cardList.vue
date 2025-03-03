@@ -4,25 +4,25 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="6">
         <div class="card-item card-item-one" @click="sendTitle('燃气数据', 'visit')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="smokeSystem" :size="20" /> 烟雾传感器 </a-space>
+            <a-space :size="8"> <svg-icon icon="smokeSystem" :size="20" /> 烟雾传感器smog </a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="1367" :duration="2200" />
+            <count-to :startVal="0" :endVal="smogNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
             <div class="abs-bottom">
-              <div style="margin-right:20px" class="inline-block">
+              <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">114个</span>
+                  <span class="bold">{{smogNum-smogNumAbnormal}}个</span>
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">5个</span>
+                  <span class="bold">{{smogNumAbnormal}}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -34,25 +34,25 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="6">
         <div class="card-item card-item-two" @click="sendTitle2('燃气数据', 'visit')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="waterSystem" :size="20" /> 水系统 </a-space>
+            <a-space :size="8"> <svg-icon icon="waterSystem" :size="20" /> 水系统water </a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="1750" :duration="2200" />
+            <count-to :startVal="0" :endVal="waterNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
             <div class="abs-bottom">
-              <div style="margin-right:20px" class="inline-block">
+              <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">154个</span>
+                  <span class="bold">{{waterNum-waterNumAbnormal}}个</span>
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">5个</span>
+                  <span class="bold">{{waterNumAbnormal}}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -64,25 +64,25 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="6">
         <div class="card-item card-item-three" @click="sendTitle3('电气数据', 'shopCard')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 电气系统 </a-space>
+            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 电气系统electricity</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="2269" :duration="2200" />
+            <count-to :startVal="0" :endVal="elecNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
             <div class="abs-bottom">
-              <div style="margin-right:20px" class="inline-block">
+              <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">191个</span>
+                  <span class="bold">{{ elecNum - elecNumAbnormal }}个</span>
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">9个</span>
+                  <span class="bold">{{ elecNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -94,25 +94,25 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="6">
         <div class="card-item card-item-four" @click="sendTitle4('支付数', 'pay')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="gasSystem" :size="20" /> 可燃气体 </a-space>
+            <a-space :size="8"> <svg-icon icon="gasSystem" :size="20" /> 可燃气体gas </a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="3996" :duration="2200" />
+            <count-to :startVal="0" :endVal="gasNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
             <div class="abs-bottom">
-              <div style="margin-right:20px" class="inline-block">
+              <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">810个</span>
+                  <span class="bold">{{gasNum-gasNumAbnormal}}个</span>
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">5个</span>
+                  <span class="bold">{{gasNumAbnormal}}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -120,7 +120,6 @@
           </div>
         </div>
       </a-col>
-
     </a-row>
   </div>
 </template>
@@ -128,25 +127,68 @@
 <script>
 import countTo from 'vue-count-to';
 import { sensorTable1, sensorTable2 } from '.';
+import axios from '@/store/axios';
 export default {
   name: 'cardList',
   components: { countTo },
   data() {
-    return {};
+    return {
+      elecNum:0,
+      elecNumAbnormal:0,
+      gasNum:0,
+      gasNumAbnormal:0,
+      waterNum:0,
+      waterNumAbnormal:0,
+      smogNum:0,
+      smogNumAbnormal:0
+    };
   },
-  mounted() {},
+  created() {
+    //elec
+    axios.get('sensor/elec/count/all').then(res => {
+      this.elecNum = res.data.data;
+      console.log(res);
+    });
+    axios.get('sensor/elec/count/abnormal').then(res => {
+      this.elecNumAbnormal = res.data.data;
+    });
+    //water
+    axios.get('sensor/water/count/all').then(res => {
+      this.waterNum = res.data.data;
+      console.log(res);
+    });
+    axios.get('sensor/water/count/abnormal').then(res => {
+      this.waterNumAbnormal = res.data.data;
+    });
+    //gas
+    axios.get('sensor/gas/count/all').then(res => {
+      this.gasNum = res.data.data;
+      console.log(res);
+    });
+    axios.get('sensor/gas/count/abnormal').then(res => {
+      this.gasNumAbnormal = res.data.data;
+    });
+    //smog
+    axios.get('sensor/smog/count/all').then(res => {
+      this.smogNum = res.data.data;
+      console.log(res);
+    });
+    axios.get('sensor/smog/count/abnormal').then(res => {
+      this.smogNumAbnormal = res.data.data;
+    });
+  },
   methods: {
     sendTitle(title, key) {
-      this.$emit("sendTitle", "sensorTable1");
+      this.$emit('sendTitle', 'sensorTable1');
     },
     sendTitle2(title, key) {
-      this.$emit("sendTitle", "sensorTable2");
+      this.$emit('sendTitle', 'sensorTable2');
     },
     sendTitle3(title, key) {
-      this.$emit("sendTitle", "sensorTable3");
+      this.$emit('sendTitle', 'sensorTable3');
     },
     sendTitle4(title, key) {
-      this.$emit("sendTitle", "sensorTable4");
+      this.$emit('sendTitle', 'sensorTable4');
     }
   }
 };
@@ -171,19 +213,19 @@ export default {
     }
     &.card-item-two {
       @include cardBg(#0c65a0, #767ef4);
-       &:hover {
+      &:hover {
         box-shadow: 0 5px 10px #737bfc;
       }
     }
     &.card-item-three {
       @include cardBg(#899002, #c6e20f);
-       &:hover {
+      &:hover {
         box-shadow: 0 5px 10px #ef9b5f;
       }
     }
     &.card-item-four {
       @include cardBg(#df4209, #f08e78);
-       &:hover {
+      &:hover {
         box-shadow: 0 5px 10px #a6e25f;
       }
     }

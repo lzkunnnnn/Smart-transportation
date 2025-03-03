@@ -1,14 +1,13 @@
 <template>
-  <div class="index-container  border-box">
+  <div class="index-container border-box">
     <!--左边容器-->
     <div class="index-left-container">
-
       <!--卡片组-->
       <a-card class="box1">
         <card-one :cardList="cardList" class="chart-bar"></card-one>
       </a-card>
 
-      <a-card title="异常发生趋势图" class="box2">
+      <a-card title="异常发生趋势图--待删除" class="box2">
         <anomaly-line :anomalyDataList="anomalyDataList" class="chart-line"></anomaly-line>
       </a-card>
 
@@ -33,7 +32,6 @@
 
     <!--右边容器-->
     <div class="index-right-container">
-
       <a-card title="当前设备状态" class="box4">
         <device-status :deviceStatusList="deviceStatusList" class="chart-line"></device-status>
       </a-card>
@@ -50,15 +48,15 @@
 </template>
 
 <script>
-import { anomalyLine, thingsPush, alarmDiagram, deviceStatus } from "./components";
-import CenterMapOne from "@/views/index/components/centerMapOne";
-import AlarmCategory from "@/views/index/components/alarmCategory";
-import CheckMaintenance from "@/views/index/components/checkMaintenance";
-import CardOne from "@/views/index/components/cardOne";
-import axios from "axios";
+import { anomalyLine, thingsPush, alarmDiagram, deviceStatus } from './components';
+import CenterMapOne from '@/views/index/components/centerMapOne';
+import AlarmCategory from '@/views/index/components/alarmCategory';
+import CheckMaintenance from '@/views/index/components/checkMaintenance';
+import CardOne from '@/views/index/components/cardOne';
+import axios from '@/store/axios.js';
 
 export default {
-  name: "mapChart",
+  name: 'mapChart',
   components: {
     CardOne,
     CheckMaintenance,
@@ -71,11 +69,11 @@ export default {
   },
   data() {
     return {
-      cardList: {},
+      cardList: { deviceNum: 2000 },
       deviceStatusList: {},
       taskPushList: [],
       anomalyDataList: {},
-      alarmCategoryList: [],
+      alarmCategoryList: []
     };
   },
   created() {
@@ -86,30 +84,30 @@ export default {
     this.getAlarmCategoryList();
   },
   methods: {
-
     getCardList() {
-      axios.get("http://127.0.0.1:4523/mock/826638/index/cardList").then(res => {
-        this.cardList = res.data.data.cardList;
+      axios.get('getCard').then(res => {
+        this.cardList = res.data.data;
+        console.log(this.cardList);
       });
     },
     getDeviceStatusList() {
-      axios.get("http://127.0.0.1:4523/mock2/826649/17732395").then(res => {
+      axios.get('http://127.0.0.1:4523/mock2/826649/17732395').then(res => {
         this.deviceStatusList = res.data.data.deviceStatusList;
       });
     },
     getTaskPushList() {
-      axios.get("http://127.0.0.1:4523/m2/826649-0-default/17734714").then(res => {
+      axios.get('http://127.0.0.1:4523/m2/826649-0-default/17734714').then(res => {
         this.taskPushList = res.data.data.taskPushList;
       });
     },
     getAnomalyDataList() {
-      axios.get("http://127.0.0.1:4523/mock/826649/anomalyDataList").then(res => {
+      axios.get('http://127.0.0.1:4523/mock/826649/anomalyDataList').then(res => {
         this.anomalyDataList = res.data.data.anomalyDataList;
         console.log(this.anomalyDataList);
       });
     },
     getAlarmCategoryList() {
-      axios.get("http://127.0.0.1:4523/mock/826649/alarmCategoryList").then(res => {
+      axios.get('http://127.0.0.1:4523/mock/826649/alarmCategoryList').then(res => {
         this.alarmCategoryList = res.data.data.alarmCategoryList;
       });
     }
@@ -125,7 +123,8 @@ export default {
   margin: 0 auto;
   display: flex;
   //设置左右在页面的分数
-  .index-left-container, .index-right-container {
+  .index-left-container,
+  .index-right-container {
     flex: 3;
 
     .box1 {
@@ -227,5 +226,4 @@ export default {
     }
   }
 }
-
 </style>

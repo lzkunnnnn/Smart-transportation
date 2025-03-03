@@ -14,9 +14,37 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
   return modules;
 }, {});
 
+//存储所有组件的状态，是公共的对象
+const state = {
+  User: {
+    name: '123'
+  }
+};
+//从store中取值的唯一方法
+/* const getters={
+  getUser(state){
+    return state.User
+  }
+} */
+//修改store中值的唯一方法
+const mutations={
+  updateUser(state,user){
+    state.User=user
+  }
+}
+//
+const actions={
+  asyncUpdateUser(context,user){
+    context.commit('updateUser',user)
+  }
+}
+
 const store = new Vuex.Store({
   modules,
-  getters
+  getters,
+  state,
+  mutations,
+  actions
 });
 
 export default store;
