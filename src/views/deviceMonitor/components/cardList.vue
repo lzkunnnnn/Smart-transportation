@@ -7,7 +7,7 @@
             <a-space :size="8"> <svg-icon icon="smokeSystem" :size="20" /> 烟雾传感器smog </a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="smogNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.smogNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
@@ -15,14 +15,16 @@
               <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">{{smogNum-smogNumAbnormal}}个</span>
+                  <span class="bold"
+                    >{{ $store.state.deviceState.smogNum - $store.state.deviceState.smogNumAbnormal }}个</span
+                  >
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">{{smogNumAbnormal}}个</span>
+                  <span class="bold">{{ $store.state.deviceState.smogNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -37,7 +39,7 @@
             <a-space :size="8"> <svg-icon icon="waterSystem" :size="20" /> 水系统water </a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="waterNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.waterNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
@@ -45,14 +47,16 @@
               <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">{{waterNum-waterNumAbnormal}}个</span>
+                  <span class="bold"
+                    >{{ $store.state.deviceState.waterNum - $store.state.deviceState.waterNumAbnormal }}个</span
+                  >
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">{{waterNumAbnormal}}个</span>
+                  <span class="bold">{{ $store.state.deviceState.waterNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -67,7 +71,7 @@
             <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 电气系统electricity</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="elecNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.elecNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
@@ -75,14 +79,16 @@
               <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">{{ elecNum - elecNumAbnormal }}个</span>
+                  <span class="bold"
+                    >{{ $store.state.deviceState.elecNum - $store.state.deviceState.elecNumAbnormal }}个</span
+                  >
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">{{ elecNumAbnormal }}个</span>
+                  <span class="bold">{{ $store.state.deviceState.elecNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -97,7 +103,7 @@
             <a-space :size="8"> <svg-icon icon="gasSystem" :size="20" /> 可燃气体gas </a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="gasNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.gasNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
@@ -105,14 +111,16 @@
               <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">{{gasNum-gasNumAbnormal}}个</span>
+                  <span class="bold"
+                    >{{ $store.state.deviceState.gasNum - $store.state.deviceState.gasNumAbnormal }}个</span
+                  >
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">{{gasNumAbnormal}}个</span>
+                  <span class="bold">{{ $store.state.deviceState.gasNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -123,59 +131,17 @@
     </a-row>
   </div>
 </template>
-
 <script>
 import countTo from 'vue-count-to';
-import { sensorTable1, sensorTable2 } from '.';
-import axios from '@/store/axios';
+
 export default {
   name: 'cardList',
   components: { countTo },
   data() {
-    return {
-      elecNum:0,
-      elecNumAbnormal:0,
-      gasNum:0,
-      gasNumAbnormal:0,
-      waterNum:0,
-      waterNumAbnormal:0,
-      smogNum:0,
-      smogNumAbnormal:0
-    };
+    return {};
   },
-  created() {
-    //elec
-    axios.get('sensor/elec/count/all').then(res => {
-      this.elecNum = res.data.data;
-      console.log(res);
-    });
-    axios.get('sensor/elec/count/abnormal').then(res => {
-      this.elecNumAbnormal = res.data.data;
-    });
-    //water
-    axios.get('sensor/water/count/all').then(res => {
-      this.waterNum = res.data.data;
-      console.log(res);
-    });
-    axios.get('sensor/water/count/abnormal').then(res => {
-      this.waterNumAbnormal = res.data.data;
-    });
-    //gas
-    axios.get('sensor/gas/count/all').then(res => {
-      this.gasNum = res.data.data;
-      console.log(res);
-    });
-    axios.get('sensor/gas/count/abnormal').then(res => {
-      this.gasNumAbnormal = res.data.data;
-    });
-    //smog
-    axios.get('sensor/smog/count/all').then(res => {
-      this.smogNum = res.data.data;
-      console.log(res);
-    });
-    axios.get('sensor/smog/count/abnormal').then(res => {
-      this.smogNumAbnormal = res.data.data;
-    });
+  mounted() {
+    this.$store.dispatch('asyncGetDeviceState');
   },
   methods: {
     sendTitle(title, key) {

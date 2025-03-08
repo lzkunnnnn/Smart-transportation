@@ -42,7 +42,7 @@ export default {
             { text: '⚪️离线', value: '⚪️离线' }
           ],
           filteredValue: filteredInfo.state || null,
-          
+
           onFilter: (value, record) => record.state.includes(value),
           sortOrder: sortedInfo.columnKey === 'state' && sortedInfo.order,
           ellipsis: true
@@ -55,8 +55,8 @@ export default {
         {
           title: '地址',
           dataIndex: 'address',
-          key: 'address',
-/*           filters: [
+          key: 'address'
+          /*           filters: [
             { text: '一号楼', value: '一号楼' },
             { text: '二号楼', value: '二号楼' }
           ],
@@ -70,7 +70,7 @@ export default {
           key: 'updateTime',
           filteredValue: filteredInfo.updateTime || null,
           onFilter: (value, record) => record.updateTime.includes(value),
-          sorter: (a, b) =>new Date(a.updateTime) - new Date(b.updateTime),
+          sorter: (a, b) => new Date(a.updateTime) - new Date(b.updateTime),
           sortOrder: sortedInfo.columnKey === 'updateTime' && sortedInfo.order,
           ellipsis: true
         },
@@ -102,6 +102,7 @@ export default {
           }
           a.id = '00' + a.id;
           a.updateTime = a.updateTime.replace('T', '    ');
+          a.operation = '详情';
         });
       });
     },
@@ -125,6 +126,8 @@ export default {
     }
   }
 };
+const data = [];
+/* 
 const data = [
   {
     key: '1',
@@ -186,7 +189,7 @@ const data = [
     time: '2021-05-11 11:31',
     operation: '详情'
   }
-];
+]; */
 </script>
 <style scoped>
 .table-operations {

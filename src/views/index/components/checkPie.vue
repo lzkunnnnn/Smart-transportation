@@ -33,6 +33,7 @@ export default {
     this.$nextTick(() => {
       this.initEchart();
     });
+    
   },
   methods: {
     initEchart() {
@@ -47,7 +48,7 @@ export default {
             {
               text: '巡检任务',
               textStyle: {
-                color: '#fff',
+                color: '#131386',
                 fontSize: 13
               },
               top: '25%',
@@ -61,7 +62,7 @@ export default {
             y: 'bottom', //可设定图例在上、下、居中
             padding: [0, 0, 30, 0], //可设定图例[距上方距离，距右方距离，距下方距离，距左方距离]
             textStyle: {
-              color: '#fff'
+              color: '#131386'
             },
             data: [
               {

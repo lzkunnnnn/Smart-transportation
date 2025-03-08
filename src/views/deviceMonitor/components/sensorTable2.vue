@@ -100,6 +100,7 @@ export default {
           }
           a.id = String(a.id).padStart(3,'0')
           a.updateTime = a.updateTime.replace('T', '    ');
+            a.operation="详情"
         });
       });
     },

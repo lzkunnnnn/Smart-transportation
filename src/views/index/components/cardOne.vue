@@ -4,10 +4,10 @@
       <a-col :span="8" class="quarter-div">
         <div class="card-item card-item-one">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="alert" :size="20"/>报警数</a-space>
+            <a-space :size="8"> <svg-icon icon="alert" :size="20" />报警数</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="cardList.alarmNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.handleList.alarmNum" :duration="2200" />
             <span class="suffix"></span>
           </div>
         </div>
@@ -18,7 +18,7 @@
             <a-space :size="8"> <svg-icon icon="bell" :size="20" />预警数</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="cardList.warningNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.handleList.earlyAlarmNum" :duration="2200" />
             <span class="suffix"></span>
           </div>
         </div>
@@ -29,7 +29,7 @@
             <a-space :size="8"> <svg-icon icon="complete" :size="20" />已处理</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="cardList.dealNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.handleList.handledNum" :duration="2200" />
             <span class="suffix"></span>
           </div>
         </div>
@@ -42,7 +42,7 @@
             <a-space :size="8"> <svg-icon icon="fault" :size="20" />设备数</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="cardList.deviceNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.sensorNum" :duration="2200" />
             <span class="suffix"></span>
           </div>
         </div>
@@ -53,7 +53,7 @@
             <a-space :size="8"> <svg-icon icon="check" :size="20" />在线数</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="cardList.onlineNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.onlineSensorNum" :duration="2200" />
             <span class="suffix"></span>
           </div>
         </div>
@@ -64,14 +64,13 @@
             <a-space :size="8"> <svg-icon icon="label" :size="20" />故障数</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="cardList.faultNum" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.abnormalSensorNum" :duration="2200" />
             <span class="suffix"></span>
           </div>
         </div>
       </a-col>
     </a-row>
   </div>
-
 </template>
 
 <script>
@@ -79,30 +78,29 @@ import countTo from 'vue-count-to';
 export default {
   name: 'cardOne',
   components: { countTo },
-  props:['cardList'],
+  props: ['cardList'],
   data() {
     return {};
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     sendTitle(title, key) {
       this.$emit('sendTitle', title, key);
-    },
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 @import '../../../styles/mixin';
-.main-box{
+.main-box {
   width: 100%;
   height: 100%;
-  .main-row-box{
+  .main-row-box {
     margin-bottom: 12px;
     height: 120px;
   }
-  .quarter-div{
+  .quarter-div {
     width: 33.33%;
     height: 100%;
     .card-item {
@@ -172,5 +170,4 @@ export default {
     }
   }
 }
-
 </style>

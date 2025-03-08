@@ -1,17 +1,16 @@
 <template>
   <baidu-map class="bm-view" ak="moztYOzxcFx8dQuLzrLdtkgAxFuH4MOA"
-             :center="{lng: 118.80 , lat: 32.02}"
+             :center="{lng: 126.6440 , lat: 45.7246}"
              :zoom="13"
              :scroll-wheel-zoom="true"
              :mapStyle="mapStyle"
              @ready="handler">
     <bm-panorama></bm-panorama>
     <!--标记点-->
-    <bm-marker :position="{lng: 118.79398, lat: 32.041966}" :dragging="true" @click="infoWindowOpen">
+    <bm-marker :position="{lng: 126.6440 , lat: 45.7246}" :dragging="true" @click="infoWindowOpen">
       <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">
-        <p style="font-weight: bold;color:red">🚨一级报警：商铺明火</p>
-        <p style="font-weight: bold">📱联系电话：139XXXXXXX
-        <p style="font-weight: bold"><a>位置：XX炒菜店</a></p>
+        <p style="font-weight: bold;color:red">本校</p>
+        <p style="font-weight: bold"><a>位置：东北林业大学</a></p>
       </bm-info-window>
     </bm-marker>
 
@@ -41,11 +40,11 @@ export default {
     return {
       data:[
         //118.79398,32.041966
-        {lng: 118.79398, lat: 32.041966, count: 1000},
+        {lng: 126.6247 , lat: 45.7662, count: 1000},
         //118.79391,32.041831
-        {lng: 118.79391, lat: 32.041831, count: 2000},
+        {lng: 126.6022 , lat: 45.7017, count: 2000},
         //118.840988,31.990256
-        {lng: 118.840988, lat: 31.990256, count: 1000},
+        {lng: 126.6640 , lat: 45.7046, count: 1000},
         // ...此处添加更多的数据集
     ],
       mapStyle: {

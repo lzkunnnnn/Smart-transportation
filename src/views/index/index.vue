@@ -7,50 +7,51 @@
         <card-one :cardList="cardList" class="chart-bar"></card-one>
       </a-card>
 
-      <a-card title="异常发生趋势图--待删除" class="box2">
-        <anomaly-line :anomalyDataList="anomalyDataList" class="chart-line"></anomaly-line>
+      <a-card title="当前设备状态" class="box2">
+        <device-status class="chart-line"></device-status>
       </a-card>
 
       <a-card title="近7日火警报警图" class="box3">
-        <alarm-diagram class="chart-diagram"></alarm-diagram>
+        {{ $store.state.deviceState }}
+        <!--         <alarm-diagram class="chart-diagram"></alarm-diagram> -->
       </a-card>
     </div>
 
     <!--中间容器-->
     <div class="index-mid-container">
-      <!--      <a-card class="box6">-->
-      <!--        <center-map class="chart-map"></center-map>-->
-      <!--      </a-card>-->
-      <a-card class="box6">
-        <center-map-one class="chart-map"></center-map-one>
-      </a-card>
-
       <a-card title="事件推送" class="box3">
         <things-push :taskPushList="taskPushList" class="char-line"></things-push>
+      </a-card>
+
+      <a-card class="box6">
+        <center-map-one class="chart-map"></center-map-one>
       </a-card>
     </div>
 
     <!--右边容器-->
     <div class="index-right-container">
-      <a-card title="当前设备状态" class="box4">
-        <device-status :deviceStatusList="deviceStatusList" class="chart-line"></device-status>
+      <a-card title="巡检维保任务" class="box4">
+        <check-maintenance />
       </a-card>
 
       <a-card title="报警类型统计及占比分析" class="box5">
-        <alarm-category :alarmCategoryList="alarmCategoryList" class="chart-line" />
+        <alarm-pie class="chart-line"></alarm-pie>
+        <!-- <alarm-category :alarmCategoryList="alarmCategoryList" class="chart-line" /> -->
       </a-card>
 
-      <a-card title="巡检维保任务" class="box3">
-        <check-maintenance />
+      <a-card title="异常发生趋势图--待删除" class="box3">
+        <anomaly-line :anomalyDataList="anomalyDataList" class="chart-line"></anomaly-line>
       </a-card>
     </div>
   </div>
 </template>
 
 <script>
-import { anomalyLine, thingsPush, alarmDiagram, deviceStatus } from './components';
+//这一堆图用echarts做的，必须显示设置宽高才会显示
+import { anomalyLine, thingsPush, alarmDiagram, deviceStatus, alarmPie } from './components';
+
 import CenterMapOne from '@/views/index/components/centerMapOne';
-import AlarmCategory from '@/views/index/components/alarmCategory';
+/* import AlarmCategory from '@/views/index/components/alarmCategory'; */
 import CheckMaintenance from '@/views/index/components/checkMaintenance';
 import CardOne from '@/views/index/components/cardOne';
 import axios from '@/store/axios.js';
@@ -60,58 +61,28 @@ export default {
   components: {
     CardOne,
     CheckMaintenance,
-    AlarmCategory,
+    /*   AlarmCategory, */
     CenterMapOne,
     alarmDiagram,
     deviceStatus,
     anomalyLine,
-    thingsPush
+    thingsPush,
+    alarmPie
   },
   data() {
     return {
-      cardList: { deviceNum: 2000 },
-      deviceStatusList: {},
+      cardList: { deviceNum: 0, onlineNum: 0, abnormalNum: 0 },
+      deviceState: {},
       taskPushList: [],
       anomalyDataList: {},
       alarmCategoryList: []
     };
   },
-  created() {
-    this.getCardList();
-    this.getDeviceStatusList();
-    this.getTaskPushList();
-    this.getAnomalyDataList();
-    this.getAlarmCategoryList();
+  mounted() {
+    this.$store.dispatch('asyncGetDeviceState');
+    this.$store.dispatch('asyncGetHandleList');
   },
-  methods: {
-    getCardList() {
-      axios.get('getCard').then(res => {
-        this.cardList = res.data.data;
-        console.log(this.cardList);
-      });
-    },
-    getDeviceStatusList() {
-      axios.get('http://127.0.0.1:4523/mock2/826649/17732395').then(res => {
-        this.deviceStatusList = res.data.data.deviceStatusList;
-      });
-    },
-    getTaskPushList() {
-      axios.get('http://127.0.0.1:4523/m2/826649-0-default/17734714').then(res => {
-        this.taskPushList = res.data.data.taskPushList;
-      });
-    },
-    getAnomalyDataList() {
-      axios.get('http://127.0.0.1:4523/mock/826649/anomalyDataList').then(res => {
-        this.anomalyDataList = res.data.data.anomalyDataList;
-        console.log(this.anomalyDataList);
-      });
-    },
-    getAlarmCategoryList() {
-      axios.get('http://127.0.0.1:4523/mock/826649/alarmCategoryList').then(res => {
-        this.alarmCategoryList = res.data.data.alarmCategoryList;
-      });
-    }
-  }
+  methods: {}
 };
 </script>
 <style lang="scss" scoped>
@@ -186,7 +157,7 @@ export default {
       border: none;
       height: 400px;
 
-      .chart-diagram {
+      .chart-line {
         height: 300px;
         width: 100%;
       }
@@ -199,9 +170,8 @@ export default {
     margin: 10px;
 
     .box6 {
-      border: none;
-      height: 710px;
-
+      height: 730px;
+      margin-top: 10px;
       .chart-map {
         width: 100%;
         height: 650px;
@@ -210,8 +180,7 @@ export default {
 
     .box3 {
       border: none;
-      height: 320px;
-      margin-top: 10px;
+      height: 300px;
 
       .chart-line {
         height: 200px;

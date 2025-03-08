@@ -5,8 +5,9 @@
 <script>
 import resize from '@/mixins/resize';
 import echarts from 'echarts';
+//右侧转盘颜色，顺时针
+const colorLost = ['#131386', '#FFC935', '#767BFB', 'rgb(248,70,102)'];
 
-const colorLost = ['#4FD8FF', '#FFC935', '#767BFB', 'rgb(248,70,102)'];
 export default {
   name: 'maintenancePie',
   mixins: [resize],
@@ -44,9 +45,10 @@ export default {
           },
           title: [
             {
+              //圆环中间的标题
               text: '维保任务',
               textStyle: {
-                color: '#fff',
+                color: '#131386',
                 fontSize: 13
               },
               top: '25%',
@@ -60,7 +62,8 @@ export default {
             y: 'bottom', //可设定图例在上、下、居中
             padding: [0, 0, 30, 0], //可设定图例[距上方距离，距右方距离，距下方距离，距左方距离]
             textStyle: {
-              color: '#fff'
+              //圆环下边字体的颜色
+              color: '#131386'
             },
             data: [
               {
@@ -85,6 +88,8 @@ export default {
               }
             }
           },
+
+          //内有圆环颜色，名字设置
           series: [
             {
               name: '维修任务',
@@ -94,7 +99,7 @@ export default {
               center: ['50%', '28%'],
               itemStyle: {
                 normal: {
-                  borderColor: '#fff',
+                  borderColor: '#fff', //圆环的border颜色
                   borderWidth: 1
                 }
               },

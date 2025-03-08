@@ -101,6 +101,7 @@ export default {
           }
           a.id = '00' + a.id;
           a.updateTime = a.updateTime.replace('T', '    ');
+            a.operation="详情"
         });
       });
     },
