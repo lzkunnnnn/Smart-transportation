@@ -1,6 +1,18 @@
 <template>
   <div>
     <a-table :columns="columns" :data-source="$store.state.alarmEvents" @change="handleChange">
+      <template v-slot:state="state">
+        <span>{{ stateTransfor(state) }}</span>
+      </template>
+      <template v-slot:level="record">
+        <span>{{ levelTransfor(record) }}</span>
+      </template>
+      <template v-slot:createTime="createTime">
+        <span>{{ TimeTransfor(createTime) }}</span>
+      </template>
+      <template v-slot:handleTime="handleTime">
+        <span>{{ TimeTransfor(handleTime) }}</span>
+      </template>
       <template v-slot:operation="record">
         <a-button type="primary" @click="handle(record)">处理</a-button>
         <!--   <a-divider type="vertical" /> -->
@@ -23,15 +35,34 @@ export default {
     this.getEvents();
   },
   methods: {
+    levelTransfor(level) {
+      if (level == 0) {
+        return '一级';
+      } else if (level == 1) {
+        return '二级';
+      } else if (level == 2) {
+        return '三级';
+      } else if (level == 3) {
+        return '四级';
+      } else {
+        return '未知等级';
+      }
+    },
+    stateTransfor(state) {
+      if (state == 0) {
+        return '🟢已处理';
+      }
+      if (state == 1) {
+        return '🔴待处理';
+      } else return '未知';
+    },
+    TimeTransfor(Time) {
+      if (Time == null) {
+        return '未知';
+      } else return Time.replace('T', ' ').replace(/-/g, '/');
+    },
     handle(record) {
-      let state = 0;
-      if (record.state == '🟢已处理') {
-        state = 0;
-      }
-      if (record.state == '🔴待处理') {
-        state = 1;
-      }
-      axios({ method: 'get', url: 'event/handleEvent', params: { id: record.id, state: state } }).then(res => {
+      axios({ method: 'get', url: 'event/handleEvent', params: { id: record.id, state: record.state } }).then(res => {
         this.getEvents();
         this.$emit('handled');
       });
@@ -60,21 +91,6 @@ export default {
     },
     getEvents() {
       this.$store.dispatch('asyncGetAlarmEvents');
-      /*       console.log(this.$store.state.alarmEvents); */
-      /*  axios.get('event/getEvents').then(res => {
-        this.data = res.data.data;
-        this.data.forEach(e => {
-          if (e.handleTime == null) {
-            e.handleTime = '未知';
-          }
-          if (e.state == 1) {
-            e.state = '🔴待处理';
-          }
-          if (e.state == 0) {
-            e.state = '🟢已处理';
-          }
-        });
-      }); */
     },
     handleChange(pagination, filters, sorter) {
       console.log('Various parameters', pagination, filters, sorter);
@@ -139,6 +155,7 @@ export default {
           title: '风险等级',
           dataIndex: 'level',
           key: 'level',
+          scopedSlots: { customRender: 'level' },
           filters: [
             { text: '一级', value: 0 },
             { text: '二级', value: 1 },
@@ -159,13 +176,15 @@ export default {
           title: '报警时间',
           dataIndex: 'createTime',
           key: 'createTime',
+          scopedSlots: { customRender: 'createTime' },
           sorter: (a, b) => a.createTime.length - b.createTime.length,
           sortDirections: ['descend', 'ascend']
         },
         {
           title: '处理时间',
           dataIndex: 'handleTime',
-          key: 'handleTime'
+          key: 'handleTime',
+          scopedSlots: { customRender: 'handleTime' }
         },
         {
           title: '状态',
@@ -178,7 +197,8 @@ export default {
           filteredValue: filteredInfo.state || null,
           onFilter: (value, record) => record.state.includes(value),
           sortOrder: sortedInfo.columnKey === 'state' && sortedInfo.order,
-          ellipsis: true
+          ellipsis: true,
+          scopedSlots: { customRender: 'state' }
         },
         {
           title: '操作',
@@ -190,56 +210,6 @@ export default {
     }
   }
 };
-/* const data = [
-  {
-    key: '1',
-    id: '001',
-    type: '烟感系统',
-    alarmType: '❌报警',
-    level: '一级',
-    address: '1号楼',
-    createTime: '2021-05-11 11:31',
-    handleTime: '未知',
-    state: '🔴待处理',
-    operation: '详情'
-  },
-  {
-    key: '2',
-    id: '002',
-    type: '电气系统',
-    alarmType: '⚠️故障',
-    level: '二级',
-    address: '1号楼',
-    createTime: '2021-05-11 11:31',
-    handleTime: '未知',
-    state: '🔴待处理',
-    operation: '详情'
-  },
-  {
-    key: '3',
-    id: '003',
-    type: '消防系统',
-    alarmType: '⚠️故障',
-    level: '五级',
-    address: '1号楼',
-    createTime: '2021-05-11 11:31',
-    handleTime: '2021-05-11 12:31',
-    state: '🟢已处理',
-    operation: '详情'
-  },
-  {
-    key: '4',
-    id: '00114',
-    type: '红外系统',
-    alarmType: '‼️预警',
-    level: '二级',
-    address: '1号楼',
-    createTime: '2021-05-11 11:31',
-    handleTime: '未知',
-    state: '🔴待处理',
-    operation: '详情'
-  }
-]; */
 </script>
 <style scoped>
 .table-operations {

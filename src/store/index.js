@@ -52,8 +52,16 @@ const state = {
   },
   //警报统计-处理情况
   handleList: {
-    alarmNum: 0,
-    earlyAlarmNum: 0,
+    alarmNum: 0, //警报事件数
+    earlyAlarmNum: 0, //预警事件数
+
+    //用作首页报警类型占比分析
+    smogNum: 0,
+    gasNum: 0,
+    elecNum: 0,
+    waterNum: 0,
+
+    //仅用于警报等级作为纵坐标的警报统计表
     handledNum: 0,
     unHandledNum: 0,
     handledLevelOne: 0,
@@ -111,17 +119,6 @@ const actions = {
     try {
       let events = await axios.get('event/getEvents');
       events = events.data.data;
-      events.forEach(e => {
-        if (e.handleTime == null) {
-          e.handleTime = '未知';
-        }
-        if (e.state == 1) {
-          e.state = '🔴待处理';
-        }
-        if (e.state == 0) {
-          e.state = '🟢已处理';
-        }
-      });
       context.commit('getAlarmEvents', events);
       context.commit('getDeviceState');
     } catch (e) {

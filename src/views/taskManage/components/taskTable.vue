@@ -1,8 +1,11 @@
 <template>
   <div class="container">
     <a-table :columns="columns" :data-source="$store.state.alarmEvents" @change="handleChange" v-show="!isVisible">
+      <template v-slot:updateTime="updateTime">
+        <span>{{ TimeTransfor(updateTime) }}</span>
+      </template>
+
       <template v-slot:operation="record">
-        <!--   <a-divider type="vertical" /> -->
         <a-button type="default" @click="detail(record)">详情</a-button>
       </template>
     </a-table>
@@ -27,6 +30,11 @@ export default {
     };
   },
   methods: {
+    TimeTransfor(Time) {
+      if (Time == null) {
+        return '未知';
+      } else return Time.replace('T', ' ').replace(/-/g, '/');
+    },
     close() {
       this.isVisible = false;
     },
@@ -98,12 +106,13 @@ export default {
         },
         {
           title: '更新时间',
-          dataIndex: 'createTime',
-          key: 'createTime',
-          filteredValue: filteredInfo.createTime || null,
-          onFilter: (value, record) => record.createTime.includes(value),
-          sorter: (a, b) => new Date(a.createTime) - new Date(b.createTime),
-          sortOrder: sortedInfo.columnKey === 'createTime' && sortedInfo.order,
+          dataIndex: 'updateTime',
+          key: 'updateTime',
+          scopedSlots: { customRender: 'updateTime' },
+          filteredValue: filteredInfo.updateTime || null,
+          onFilter: (value, record) => record.updateTime.includes(value),
+          sorter: (a, b) => new Date(a.updateTime) - new Date(b.updateTime),
+          sortOrder: sortedInfo.columnKey === 'updateTime' && sortedInfo.order,
           ellipsis: true
         },
         {

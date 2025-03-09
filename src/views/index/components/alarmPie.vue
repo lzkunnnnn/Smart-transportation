@@ -15,6 +15,7 @@ export default {
     return {};
   },
   mounted() {
+    this.$store.dispatch('asyncGetHandleList');
     this.$nextTick(() => {
       this.initEchart();
     });
@@ -33,11 +34,12 @@ export default {
           },
           legend: {
             show: true,
-            left: '15',
+            left: 40,
             top: 0,
             type: 'scroll',
-            itemWidth: 18,
-            itemHeight: 11,
+            //上方小方格大小
+            itemWidth: 20,
+            itemHeight: 16,
             data: ['smog', 'gas', 'water', 'elec', 'xxx', 'xxxx']
           },
           series: [
@@ -51,27 +53,27 @@ export default {
               data: [
                 {
                   name: 'smog',
-                  value: 254
+                  value: this.$store.state.handleList.smogNum
                 },
                 {
                   name: 'gas',
-                  value: 136
+                  value: this.$store.state.handleList.gasNum
                 },
                 {
                   name: 'water',
-                  value: 292
+                  value: this.$store.state.handleList.waterNum
                 },
                 {
                   name: 'elec',
-                  value: 192
+                  value: this.$store.state.handleList.elecNum
                 },
                 {
                   name: 'xxx',
-                  value: 650
+                  value: 2
                 },
                 {
                   name: 'xxxx',
-                  value: 450
+                  value: 3
                 }
               ],
               label: {},

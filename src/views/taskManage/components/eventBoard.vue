@@ -10,7 +10,9 @@
         <a-row class="board-item"> <b>位置</b> {{ eventBoardInfo.address }}</a-row>
       </div>
       <div class="grid-item b">
-        <a-row class="board-item"> <b>发生时间:</b> {{ eventBoardInfo.createTime }}</a-row>
+        <a-row class="board-item">
+          <b>发生时间:</b> {{ eventBoardInfo.createTime.replace('T', ' ').replace(/-/g, '/') }}</a-row
+        >
         <a-row class="board-item"> <b>事件来源: </b> {{ eventBoardInfo.source }}</a-row>
         <a-row class="board-item"> <b>上报人: </b> {{ eventBoardInfo.reportPerson }}</a-row>
         <a-row class="board-item"> <b>处理人: </b> {{ eventBoardInfo.handlePerson }}</a-row>

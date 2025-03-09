@@ -1,20 +1,20 @@
 <template>
-  <vue-seamless-scroll :data="$store.state.alarmEvents" class="seamless-warp" :class-option="classOption">
-    <a-list-item v-for="item in $store.state.alarmEvents">
-      <span v-text="item.id"></span>
-      <span v-text="item.address"></span>
-      <span v-text="item.alarmType"></span>
-      <span v-text="item.updateTime"></span>
-    </a-list-item>
-  </vue-seamless-scroll>
-  <!--   <vue-seamless-scroll :data="taskPushList" class="seamless-warp" :class-option="classOption">
-    <a-list-item v-for="item in taskPushList">
-      <span v-text="item.id"></span>
-      <span v-text="item.site"></span>
-      <span v-text="item.title"></span>
-      <span v-text="item.date"></span>
-    </a-list-item>
-  </vue-seamless-scroll> -->
+  <div>
+    <div class="grid-container header">
+      <span class="a">事件ID</span>
+      <span class="b">位置</span>
+      <span class="c">状态</span>
+      <span class="d">更新时间</span>
+    </div>
+    <vue-seamless-scroll :data="$store.state.alarmEvents" class="seamless-warp" :class-option="classOption">
+      <div class="grid-container" v-for="item in $store.state.alarmEvents" :key="item.id">
+        <span class="a">{{ item.id }}</span>
+        <span class="b">{{ item.address }}</span>
+        <span class="c">{{ item.alarmType }}</span>
+        <span class="d">{{ item.updateTime }}</span>
+      </div>
+    </vue-seamless-scroll>
+  </div>
 </template>
 
 <script>
@@ -36,28 +36,9 @@ export default {
       await this.$store.dispatch('asyncGetAlarmEvents');
       this.taskPushList = this.$store.state.alarmEvents;
       this.taskPushList.forEach(t => {
-        t.updateTime = t.updateTime.replace('T', ' ');
+        t.updateTime = t.updateTime.replace('T', ' ').replace(/-/g, '/');
       });
     } catch (e) {}
-
-    /*   this.getThingsPush(); */
-    /*     this.taskPushList = [
-      { id: 1, title: 'ww', date: '123', site: '123' },
-      { id: 2, title: 'ww', date: '123', site: '123' },
-      { id: 3, title: 'ww', date: '123', site: '123' },
-      { id: 4, title: 'ww', date: '123', site: '123' },
-      { id: 5, title: 'ww', date: '123', site: '123' }
-    ]; */
-  },
-  methods: {
-    /*     getThingsPush() {
-      axios.get('thingspush/getThings').then(res => {
-        this.taskPushList = res.data.data;
-        this.taskPushList.forEach(t => {
-          t.date = t.date.replace('T', ' ');
-        });
-      });
-    } */
   },
   computed: {
     classOption() {
@@ -67,7 +48,7 @@ export default {
         hoverStop: true, // 是否开启鼠标悬停stop
         direction: 1, // 0向下 1向上 2向左 3向右
         openWatch: true, // 开启数据实时监控刷新dom
-        singleHeight: 42, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
+        singleHeight: 40, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
         singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
         waitTime: 2000 // 单步运动停止的时间(默认值1000ms)
       };
@@ -76,9 +57,42 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.header {
+  box-sizing: border-box;
+  background-color: #fafafa;
+  border-bottom: 2px solid #e8e8e8;
+}
 .seamless-warp {
-  height: 200px;
+  height: 160px;
   overflow: hidden;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 10%);
+  grid-template-areas: 'a a b b c c c d d d';
+  border-bottom: 2px solid #e8e8e8;
+  width: 100%;
+  height: 40px;
+  .a {
+    grid-area: a;
+  }
+  .b {
+    grid-area: b;
+  }
+  .c {
+    grid-area: c;
+  }
+  .d {
+    grid-area: d;
+  }
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.grid-container:not(.header):hover {
+  background-color: #ecf8ff;
 }
 </style>

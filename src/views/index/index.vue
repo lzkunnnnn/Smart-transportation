@@ -183,7 +183,7 @@ export default {
       height: 300px;
 
       .chart-line {
-        height: 200px;
+        height: 280px;
         width: 100%;
       }
 
