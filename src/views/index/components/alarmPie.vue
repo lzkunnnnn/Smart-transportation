@@ -15,13 +15,13 @@ export default {
     return {};
   },
   mounted() {
-    this.$store.dispatch('asyncGetHandleList');
     this.$nextTick(() => {
       this.initEchart();
     });
   },
   methods: {
-    initEchart() {
+    async initEchart() {
+      await this.$store.dispatch('asyncGetHandleList');
       this.myChart = echarts.init(this.$refs.alarmPie);
       this.myChart.setOption(
         {

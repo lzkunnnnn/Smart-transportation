@@ -11,16 +11,16 @@
         <device-status class="chart-line"></device-status>
       </a-card>
 
-      <a-card title="近7日火警报警图" class="box3">
-        {{ $store.state.deviceState }}
+      <a-card title="报警类型统计及占比分析" class="box3">
+        <alarm-pie class="chart-line"></alarm-pie>
         <!--         <alarm-diagram class="chart-diagram"></alarm-diagram> -->
       </a-card>
     </div>
 
     <!--中间容器-->
     <div class="index-mid-container">
-      <a-card title="事件推送" class="box3">
-        <things-push :taskPushList="taskPushList" class="char-line"></things-push>
+      <a-card title="巡检维保任务" class="box3">
+        <!--         <check-maintenance /> -->
       </a-card>
 
       <a-card class="box6">
@@ -30,12 +30,13 @@
 
     <!--右边容器-->
     <div class="index-right-container">
-      <a-card title="巡检维保任务" class="box4">
-        <check-maintenance />
+      <a-card class="box4">
+        <calender-chart class="calender"></calender-chart>
       </a-card>
 
-      <a-card title="报警类型统计及占比分析" class="box5">
-        <alarm-pie class="chart-line"></alarm-pie>
+      <a-card title="事件推送" class="box5">
+        <things-push :taskPushList="taskPushList" class="char-line"></things-push>
+
         <!-- <alarm-category :alarmCategoryList="alarmCategoryList" class="chart-line" /> -->
       </a-card>
 
@@ -48,7 +49,7 @@
 
 <script>
 //这一堆图用echarts做的，必须显示设置宽高才会显示
-import { anomalyLine, thingsPush, alarmDiagram, deviceStatus, alarmPie } from './components';
+import { anomalyLine, thingsPush, alarmDiagram, deviceStatus, alarmPie, calenderChart } from './components';
 
 import CenterMapOne from '@/views/index/components/centerMapOne';
 /* import AlarmCategory from '@/views/index/components/alarmCategory'; */
@@ -63,6 +64,7 @@ export default {
     CheckMaintenance,
     /*   AlarmCategory, */
     CenterMapOne,
+    calenderChart,
     alarmDiagram,
     deviceStatus,
     anomalyLine,
@@ -146,6 +148,10 @@ export default {
       border: none;
       height: 300px;
 
+      .calender {
+        height: 300px;
+      }
+      
       .chart-line {
         height: 200px;
         width: 100%;

@@ -5,5 +5,5 @@ export { default as deviceStatus } from './deviceStatus';
 export { default as alarmDiagram } from './alarmDiagram';
 export { default as centerMapOne } from './centerMapOne';
 export { default as alarmCategory } from './alarmCategory';
-export { default as alarmPie } from './alarmPie.vue'
-
+export { default as alarmPie } from './alarmPie.vue';
+export { default as calenderChart } from './calenderChart.vue';

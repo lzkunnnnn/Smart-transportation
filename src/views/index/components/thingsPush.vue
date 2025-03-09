@@ -64,7 +64,7 @@ export default {
   border-bottom: 2px solid #e8e8e8;
 }
 .seamless-warp {
-  height: 160px;
+  height: 240px;
   overflow: hidden;
 }
 .grid-container {

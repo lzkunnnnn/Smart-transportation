@@ -4,13 +4,14 @@
       <a-col :span="10" class="gutter-box">
         <a-space :size="8" align="center">
           <svg-icon icon="waterSystem" :size="50" />
+
           <div class="textBox">
             <a-statistic
               :value="$store.state.deviceState.waterNum - $store.state.deviceState.waterNumAbnormal"
-              :value-style="{ color: '#f69a3d' }"
+              :value-style="{ color: ' #42d756' }"
             >
               <template #suffix>
-                <span style="color: #42d756"> / {{ $store.state.deviceState.waterNum }}</span>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.waterNum }}</span>
               </template>
             </a-statistic>
             <p>水系统</p>
@@ -23,10 +24,10 @@
           <div class="textBox">
             <a-statistic
               :value="$store.state.deviceState.smogNum - $store.state.deviceState.smogNumAbnormal"
-              :value-style="{ color: '#f69a3d' }"
+              :value-style="{ color: '#42d756' }"
             >
               <template #suffix>
-                <span style="color: #42d756"> / {{ $store.state.deviceState.smogNum }}</span>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.smogNum }}</span>
               </template>
             </a-statistic>
             <p>烟雾</p>
@@ -42,10 +43,10 @@
           <div class="textBox">
             <a-statistic
               :value="$store.state.deviceState.elecNum - $store.state.deviceState.elecNumAbnormal"
-              :value-style="{ color: '#f69a3d' }"
+              :value-style="{ color: '#42d756' }"
             >
               <template #suffix>
-                <span style="color: #42d756"> / {{ $store.state.deviceState.elecNum }}</span>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.elecNum }}</span>
               </template>
             </a-statistic>
             <p>电气火灾</p>
@@ -58,10 +59,44 @@
           <div class="textBox">
             <a-statistic
               :value="$store.state.deviceState.gasNum - $store.state.deviceState.gasNumAbnormal"
-              :value-style="{ color: '#f69a3d' }"
+              :value-style="{ color: '#42d756' }"
             >
               <template #suffix>
-                <span style="color: #42d756"> / {{ $store.state.deviceState.gasNum }}</span>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.gasNum }}</span>
+              </template>
+            </a-statistic>
+            <p>可燃气体</p>
+          </div>
+        </a-space>
+      </a-col>
+    </a-row>
+    <a-row type="flex" justify="space-around" align="middle" class="rowBox">
+      <a-col :span="10" class="gutter-box">
+        <a-space :size="8" align="center">
+          <svg-icon icon="electronicSystem" :size="50" />
+          <div class="textBox">
+            <a-statistic
+              :value="$store.state.deviceState.elecNum - $store.state.deviceState.elecNumAbnormal"
+              :value-style="{ color: '#42d756' }"
+            >
+              <template #suffix>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.elecNum }}</span>
+              </template>
+            </a-statistic>
+            <p>电气火灾</p>
+          </div>
+        </a-space>
+      </a-col>
+      <a-col :span="10" class="gutter-box">
+        <a-space :size="8" align="center">
+          <svg-icon icon="gasSystem" :size="50" />
+          <div class="textBox">
+            <a-statistic
+              :value="$store.state.deviceState.gasNum - $store.state.deviceState.gasNumAbnormal"
+              :value-style="{ color: '#42d756' }"
+            >
+              <template #suffix>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.gasNum }}</span>
               </template>
             </a-statistic>
             <p>可燃气体</p>
@@ -85,7 +120,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .centerContainer {
-  align-item: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
   .rowBox {
