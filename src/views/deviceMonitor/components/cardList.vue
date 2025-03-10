@@ -1,7 +1,7 @@
 <template>
   <div class="cardList-wrapper">
     <a-row :gutter="24">
-      <a-col :xs="12" :md="12" :sm="12" :lg="6">
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-one" @click="sendTitle('燃气数据', 'visit')">
           <div class="card-title">
             <a-space :size="8"> <svg-icon icon="smokeSystem" :size="20" /> 烟雾传感器smog </a-space>
@@ -33,7 +33,7 @@
         </div>
       </a-col>
 
-      <a-col :xs="12" :md="12" :sm="12" :lg="6">
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-two" @click="sendTitle2('燃气数据', 'visit')">
           <div class="card-title">
             <a-space :size="8"> <svg-icon icon="waterSystem" :size="20" /> 水系统water </a-space>
@@ -65,7 +65,7 @@
         </div>
       </a-col>
 
-      <a-col :xs="12" :md="12" :sm="12" :lg="6">
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-three" @click="sendTitle3('电气数据', 'shopCard')">
           <div class="card-title">
             <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 电气系统electricity</a-space>
@@ -97,7 +97,7 @@
         </div>
       </a-col>
 
-      <a-col :xs="12" :md="12" :sm="12" :lg="6">
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-four" @click="sendTitle4('支付数', 'pay')">
           <div class="card-title">
             <a-space :size="8"> <svg-icon icon="gasSystem" :size="20" /> 可燃气体gas </a-space>
@@ -121,6 +121,70 @@
                 运转异常：
                 <a-space :size="8">
                   <span class="bold">{{ $store.state.deviceState.gasNumAbnormal }}个</span>
+                  <a-icon type="caret-up" class="down" />
+                </a-space>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a-col>
+
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
+        <div class="card-item card-item-five" @click="sendTitle5('电气数据', 'shopCard')">
+          <div class="card-title">
+            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 设备5</a-space>
+          </div>
+          <div class="all-count">
+            <count-to :startVal="0" :endVal="$store.state.deviceState.elecNum" :duration="2200" />
+            <span class="suffix">个</span>
+          </div>
+          <div class="card-info relative">
+            <div class="abs-bottom">
+              <div style="margin-right: 20px" class="inline-block">
+                运转正常：
+                <a-space :size="8">
+                  <span class="bold"
+                    >{{ $store.state.deviceState.elecNum - $store.state.deviceState.elecNumAbnormal }}个</span
+                  >
+                  <a-icon type="caret-down" class="down" />
+                </a-space>
+              </div>
+              <div class="inline-block">
+                运转异常：
+                <a-space :size="8">
+                  <span class="bold">{{ $store.state.deviceState.elecNumAbnormal }}个</span>
+                  <a-icon type="caret-up" class="down" />
+                </a-space>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a-col>
+
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
+        <div class="card-item card-item-six" @click="sendTitle6('电气数据', 'shopCard')">
+          <div class="card-title">
+            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 设备6</a-space>
+          </div>
+          <div class="all-count">
+            <count-to :startVal="0" :endVal="$store.state.deviceState.elecNum" :duration="2200" />
+            <span class="suffix">个</span>
+          </div>
+          <div class="card-info relative">
+            <div class="abs-bottom">
+              <div style="margin-right: 20px" class="inline-block">
+                运转正常：
+                <a-space :size="8">
+                  <span class="bold"
+                    >{{ $store.state.deviceState.elecNum - $store.state.deviceState.elecNumAbnormal }}个</span
+                  >
+                  <a-icon type="caret-down" class="down" />
+                </a-space>
+              </div>
+              <div class="inline-block">
+                运转异常：
+                <a-space :size="8">
+                  <span class="bold">{{ $store.state.deviceState.elecNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -155,6 +219,12 @@ export default {
     },
     sendTitle4(title, key) {
       this.$emit('sendTitle', 'sensorTable4');
+    },
+    sendTitle5() {
+      this.$emit('sendTitle', 'sensorTable5');
+    },
+    sendTitle6() {
+      this.$emit('sendTitle', 'sensorTable6');
     }
   }
 };
@@ -191,6 +261,18 @@ export default {
     }
     &.card-item-four {
       @include cardBg(#df4209, #f08e78);
+      &:hover {
+        box-shadow: 0 5px 10px #a6e25f;
+      }
+    }
+    &.card-item-five {
+      @include cardBg(#2bae85, #57c3c2);
+      &:hover {
+        box-shadow: 0 5px 10px #a6e25f;
+      }
+    }
+    &.card-item-six {
+      @include cardBg(#eba0b3, #f08e78);
       &:hover {
         box-shadow: 0 5px 10px #a6e25f;
       }

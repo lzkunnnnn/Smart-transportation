@@ -7,3 +7,5 @@ export { default as centerMapOne } from './centerMapOne';
 export { default as alarmCategory } from './alarmCategory';
 export { default as alarmPie } from './alarmPie.vue';
 export { default as calenderChart } from './calenderChart.vue';
+export { default as wordGraph } from './wordGraph.vue';
+export { default as surroundGraph } from './surroundGraph.vue';

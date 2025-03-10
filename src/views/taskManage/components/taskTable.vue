@@ -2,7 +2,11 @@
   <div class="container">
     <a-table :columns="columns" :data-source="$store.state.alarmEvents" @change="handleChange" v-show="!isVisible">
       <template v-slot:updateTime="updateTime">
-        <span>{{ TimeTransfor(updateTime) }}</span>
+        <span>{{ timeTransfor(updateTime) }}</span>
+      </template>
+
+      <template v-slot:state="state">
+        <span>{{ stateTransfor(state) }}</span>
       </template>
 
       <template v-slot:operation="record">
@@ -16,6 +20,7 @@
 </template>
 <script>
 import eventBoard from './eventBoard.vue';
+import { stateTransfor, timeTransfor } from '@/api/transfor.js';
 export default {
   components: {
     eventBoard
@@ -30,11 +35,8 @@ export default {
     };
   },
   methods: {
-    TimeTransfor(Time) {
-      if (Time == null) {
-        return '未知';
-      } else return Time.replace('T', ' ').replace(/-/g, '/');
-    },
+    stateTransfor,
+    timeTransfor,
     close() {
       this.isVisible = false;
     },
@@ -120,13 +122,14 @@ export default {
           dataIndex: 'state',
           key: 'state',
           filters: [
-            { text: '🔴待处理', value: '🔴待处理' },
-            { text: '🟢已处理', value: '🟢已处理' }
+            { text: '🔴待处理', value: 1 },
+            { text: '🟢已处理', value: 0 }
           ],
           filteredValue: filteredInfo.state || null,
-          onFilter: (value, record) => record.state.includes(value),
+          onFilter: (value, record) => record.state == value,
           sortOrder: sortedInfo.columnKey === 'state' && sortedInfo.order,
-          ellipsis: true
+          ellipsis: true,
+          scopedSlots: { customRender: 'state' }
         },
         {
           title: '上报人',

@@ -8,10 +8,10 @@
         <span>{{ levelTransfor(record) }}</span>
       </template>
       <template v-slot:createTime="createTime">
-        <span>{{ TimeTransfor(createTime) }}</span>
+        <span>{{ timeTransfor(createTime) }}</span>
       </template>
       <template v-slot:handleTime="handleTime">
-        <span>{{ TimeTransfor(handleTime) }}</span>
+        <span>{{ timeTransfor(handleTime) }}</span>
       </template>
       <template v-slot:operation="record">
         <a-button type="primary" @click="handle(record)">处理</a-button>
@@ -23,6 +23,7 @@
 </template>
 <script>
 import axios from 'axios';
+import { timeTransfor, stateTransfor, levelTransfor } from '@/api/transfor';
 export default {
   data() {
     return {
@@ -35,38 +36,18 @@ export default {
     this.getEvents();
   },
   methods: {
-    levelTransfor(level) {
-      if (level == 0) {
-        return '一级';
-      } else if (level == 1) {
-        return '二级';
-      } else if (level == 2) {
-        return '三级';
-      } else if (level == 3) {
-        return '四级';
-      } else {
-        return '未知等级';
-      }
-    },
-    stateTransfor(state) {
-      if (state == 0) {
-        return '🟢已处理';
-      }
-      if (state == 1) {
-        return '🔴待处理';
-      } else return '未知';
-    },
-    TimeTransfor(Time) {
-      if (Time == null) {
-        return '未知';
-      } else return Time.replace('T', ' ').replace(/-/g, '/');
-    },
+    levelTransfor,
+    stateTransfor,
+    timeTransfor,
     handle(record) {
-      axios({ method: 'get', url: 'event/handleEvent', params: { id: record.id, state: record.state } }).then(res => {
+      axios({
+        method: 'get',
+        url: 'event/handleEvent',
+        params: { id: record.id, state: record.state, person: 'admin' }
+      }).then(res => {
         this.getEvents();
         this.$emit('handled');
       });
-
       //这个post为什么不行？
       //牢！牢！牢！
       /*       const eventDTO = { id: record.id, state: record.state };
@@ -91,6 +72,7 @@ export default {
     },
     getEvents() {
       this.$store.dispatch('asyncGetAlarmEvents');
+      /*     console.log(this.$store.state.alarmEvents); */
     },
     handleChange(pagination, filters, sorter) {
       console.log('Various parameters', pagination, filters, sorter);
@@ -191,11 +173,11 @@ export default {
           dataIndex: 'state',
           key: 'state',
           filters: [
-            { text: '🔴待处理', value: '🔴待处理' },
-            { text: '🟢已处理', value: '🟢已处理' }
+            { text: '🔴待处理', value: 1 },
+            { text: '🟢已处理', value: 0 }
           ],
           filteredValue: filteredInfo.state || null,
-          onFilter: (value, record) => record.state.includes(value),
+          onFilter: (value, record) => record.state == value,
           sortOrder: sortedInfo.columnKey === 'state' && sortedInfo.order,
           ellipsis: true,
           scopedSlots: { customRender: 'state' }

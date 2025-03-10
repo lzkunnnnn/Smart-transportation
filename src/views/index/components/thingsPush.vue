@@ -38,7 +38,9 @@ export default {
       this.taskPushList.forEach(t => {
         t.updateTime = t.updateTime.replace('T', ' ').replace(/-/g, '/');
       });
-    } catch (e) {}
+    } catch (e) {
+      console.log('error');
+    }
   },
   computed: {
     classOption() {
@@ -50,7 +52,7 @@ export default {
         openWatch: true, // 开启数据实时监控刷新dom
         singleHeight: 40, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
         singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
-        waitTime: 2000 // 单步运动停止的时间(默认值1000ms)
+        waitTime: 3000 // 单步运动停止的时间(默认值1000ms)
       };
     }
   }
@@ -64,7 +66,7 @@ export default {
   border-bottom: 2px solid #e8e8e8;
 }
 .seamless-warp {
-  height: 240px;
+  height: 600px;
   overflow: hidden;
 }
 .grid-container {

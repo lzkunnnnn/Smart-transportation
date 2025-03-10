@@ -70,7 +70,7 @@ export default {
           legend: {
             show: true,
             textStyle: {
-              color: '#000000'
+              color: 'white'
             }
           },
           grid: {
@@ -88,7 +88,7 @@ export default {
             data: ['四级警报', '三级警报', '二级警报', '一级警报'],
             axisLabel: {
               textStyle: {
-                color: '#000000'
+                color: 'white'
               }
             }
           },
@@ -103,7 +103,7 @@ export default {
               },
               itemStyle: {
                 normal: {
-                  color: '#3dadf6'
+                  color: ' rgb(67, 56, 202)'
                 }
                 // borderColor: '#fff'
               },
@@ -121,7 +121,7 @@ export default {
                 show: true
               },
               itemStyle: {
-                color: 'rgb(249,129,159)'
+                color: ' rgb(244, 63, 94)'
                 // borderColor: '#fff'
               },
               emphasis: {

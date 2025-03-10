@@ -40,7 +40,13 @@ export default {
             //上方小方格大小
             itemWidth: 20,
             itemHeight: 16,
-            data: ['smog', 'gas', 'water', 'elec', 'xxx', 'xxxx']
+            data: ['smog', 'gas', 'water', 'elec', 'xxx', 'xxxx'],
+            textStyle: {
+              // 设置字体样式
+              color: 'white', // 字体颜色为红色
+              fontSize: 16, // 字体大小（可选）
+              fontWeight: 'normal' // 字体粗细（可选）
+            }
           },
           series: [
             {

@@ -17,7 +17,7 @@
     <div class="word-container">
       <word-graph class="chart-line" />
     </div>
-    
+
     <!--下部分容器-->
     <div class="bottom-container">
       <!--      <a-card title="事件占比统计" class="left-box">-->
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { pieOne, lineOne, lineTwo } from './components';
+import { pieOne, lineOne, lineTwo, surroundGraph } from './components';
 import TaskTable from '@/views/taskManage/components/taskTable';
 import WordGraph from '@/views/taskManage/components/wordGraph';
 import TransferTable from '@/views/taskManage/components/transferTable';
@@ -47,6 +47,7 @@ export default {
     TransferTable,
     WordGraph,
     TaskTable,
+    surroundGraph,
     lineOne,
     lineTwo,
     pieOne

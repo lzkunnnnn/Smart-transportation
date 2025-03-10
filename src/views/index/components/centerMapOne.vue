@@ -7,7 +7,7 @@
              @ready="handler">
     <bm-panorama></bm-panorama>
     <!--标记点-->
-    <bm-marker :position="{lng: 126.6440 , lat: 45.7246}" :dragging="true" @click="infoWindowOpen">
+    <bm-marker :position="{lng: 126.6247 , lat: 45.7662,}" :dragging="true" @click="infoWindowOpen">
       <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">
         <p style="font-weight: bold;color:red">本校</p>
         <p style="font-weight: bold"><a>位置：东北林业大学</a></p>

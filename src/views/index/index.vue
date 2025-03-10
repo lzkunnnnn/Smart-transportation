@@ -19,7 +19,11 @@
 
     <!--中间容器-->
     <div class="index-mid-container">
-      <a-card title="巡检维保任务" class="box3">
+      <a-card  class="box3">
+ 
+          <surround-graph class="chart-line"></surround-graph>
+          <!--           <word-graph class="chart-line"></word-graph> -->
+
         <!--         <check-maintenance /> -->
       </a-card>
 
@@ -40,22 +44,30 @@
         <!-- <alarm-category :alarmCategoryList="alarmCategoryList" class="chart-line" /> -->
       </a-card>
 
-      <a-card title="异常发生趋势图--待删除" class="box3">
+      <!--       <a-card title="异常发生趋势图--待删除" class="box3">
         <anomaly-line :anomalyDataList="anomalyDataList" class="chart-line"></anomaly-line>
-      </a-card>
+      </a-card> -->
     </div>
   </div>
 </template>
 
 <script>
 //这一堆图用echarts做的，必须显示设置宽高才会显示
-import { anomalyLine, thingsPush, alarmDiagram, deviceStatus, alarmPie, calenderChart } from './components';
+import {
+  anomalyLine,
+  thingsPush,
+  alarmDiagram,
+  deviceStatus,
+  alarmPie,
+  calenderChart,
+  wordGraph,
+  surroundGraph
+} from './components';
 
 import CenterMapOne from '@/views/index/components/centerMapOne';
 /* import AlarmCategory from '@/views/index/components/alarmCategory'; */
 import CheckMaintenance from '@/views/index/components/checkMaintenance';
 import CardOne from '@/views/index/components/cardOne';
-import axios from '@/store/axios.js';
 
 export default {
   name: 'mapChart',
@@ -67,9 +79,11 @@ export default {
     calenderChart,
     alarmDiagram,
     deviceStatus,
+    surroundGraph,
     anomalyLine,
     thingsPush,
-    alarmPie
+    alarmPie,
+    wordGraph
   },
   data() {
     return {
@@ -151,7 +165,7 @@ export default {
       .calender {
         height: 300px;
       }
-      
+
       .chart-line {
         height: 200px;
         width: 100%;
@@ -161,7 +175,7 @@ export default {
     .box5 {
       margin: 10px;
       border: none;
-      height: 400px;
+      height: 730px;
 
       .chart-line {
         height: 300px;
@@ -187,9 +201,8 @@ export default {
     .box3 {
       border: none;
       height: 300px;
-
       .chart-line {
-        height: 280px;
+        height: 260px;
         width: 100%;
       }
 

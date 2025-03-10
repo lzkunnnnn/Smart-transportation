@@ -34,7 +34,7 @@ const state = {
     waterNumAbnormal: 0
   },
   //事件
-  alarmEvents: {
+  alarmEvents: [] /* {
     id: 0,
     state: 0,
     level: 0,
@@ -49,7 +49,7 @@ const state = {
     updateTime: '',
     createTime: '',
     handleTime: ''
-  },
+  } */,
   //警报统计-处理情况
   handleList: {
     alarmNum: 0, //警报事件数

@@ -83,7 +83,7 @@
                 <span style="color: #f69a3d"> / {{ $store.state.deviceState.elecNum }}</span>
               </template>
             </a-statistic>
-            <p>电气火灾</p>
+            <p>设备5</p>
           </div>
         </a-space>
       </a-col>
@@ -99,7 +99,7 @@
                 <span style="color: #f69a3d"> / {{ $store.state.deviceState.gasNum }}</span>
               </template>
             </a-statistic>
-            <p>可燃气体</p>
+            <p>设备6</p>
           </div>
         </a-space>
       </a-col>

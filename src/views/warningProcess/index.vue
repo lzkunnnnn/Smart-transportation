@@ -5,59 +5,37 @@
         <sale-title @sendDayTitle="getCurrentName">
           <template slot="title"> {{ currentName }}</template>
         </sale-title>
+
         <a-row class="sale-container" :gutter="16">
-          <a-col :span="16" style="height: 100%; overflow: scroll">
-            预测图 警报统计: {{ $store.state.handleList }} <br />
-            <!--    <anomaly-line class="chart-line"></anomaly-line> -->
-            <!--            <line-chart :chartData="lineData" :title="currentName" />-->
-          </a-col>
-          <a-col :span="8" style="height: 100%">
+          <a-col :span="12" style="height: 100%">
             <div class="shop-title">{{ currentName }}警报统计</div>
             <level-rank :handleList="$store.state.handleList" style="height: calc(100% - 50px)" :rankData="rankData" />
           </a-col>
+
+          <a-col :span="12" style="height: 100%">
+            <event-bar class="chart-line"></event-bar>
+          </a-col>
         </a-row>
+
         <a-row class="sale-container" :gutter="16">
           <div class="shop-title">{{ currentName }}警报事件</div>
-          <sensor-table @handled="update()"></sensor-table>
+          <event-board @handled="update()"></event-board>
         </a-row>
       </a-card>
     </div>
-    <!--    &lt;!&ndash;下部分容器&ndash;&gt;-->
-    <!--    <div>-->
-    <!--      <a-card title="今日报警" class="top-container">-->
-    <!--        <sensor-table></sensor-table>-->
-    <!--      </a-card>-->
-
-    <!--      &lt;!&ndash;      <a-card title="报警占比统计" class="left-box">&ndash;&gt;-->
-    <!--      &lt;!&ndash;        <pie-one class="chart-line"></pie-one>&ndash;&gt;-->
-    <!--      &lt;!&ndash;      </a-card>&ndash;&gt;-->
-    <!--      &lt;!&ndash;      <a-card title="报警预测" class="mid-box">&ndash;&gt;-->
-    <!--      &lt;!&ndash;        <line-two class="chart-line"></line-two>&ndash;&gt;-->
-    <!--      &lt;!&ndash;      </a-card>&ndash;&gt;-->
-    <!--      &lt;!&ndash;      <a-card title="历史报警数量统计" class="right-box">&ndash;&gt;-->
-    <!--      &lt;!&ndash;        <line-one class="chart-line"></line-one>&ndash;&gt;-->
-
-    <!--      &lt;!&ndash;      </a-card>&ndash;&gt;-->
-    <!--    </div>-->
   </div>
 </template>
 
 <script>
-import { sensorTable, pieOne, lineOne, lineTwo } from './components';
-import SaleTitle from '@/views/warningProcess/components/saleTitle';
-import LevelRank from '@/views/warningProcess/components/levelRank';
-import AnomalyLine from '@/views/warningProcess/components/anomalyLine';
-import axios from '@/store/axios';
+import { eventBoard, levelRank, saleTitle, eventBar } from './components';
+
 export default {
   name: 'index',
   components: {
-    AnomalyLine,
-    LevelRank,
-    SaleTitle,
-    lineOne,
-    lineTwo,
-    pieOne,
-    sensorTable
+    levelRank,
+    saleTitle,
+    eventBoard,
+    eventBar
   },
   data() {
     return {

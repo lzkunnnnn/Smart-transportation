@@ -10,12 +10,17 @@
 </template>
 
 <script>
-import { cardList } from './components';
+import {
+  cardList,
+  sensorTable1,
+  sensorTable2,
+  sensorTable3,
+  sensorTable4,
+  sensorTable5,
+  sensorTable6
+} from './components';
 /* import DepartmentSelection from './components/departmentSelection.vue'; */
-import sensorTable1 from './components/sensorTable1.vue';
-import sensorTable2 from './components/sensorTable2.vue';
-import sensorTable3 from './components/sensorTable3.vue';
-import sensorTable4 from './components/sensorTable4.vue';
+
 export default {
   name: 'index',
   components: {
@@ -24,7 +29,9 @@ export default {
     sensorTable1,
     sensorTable2,
     sensorTable3,
-    sensorTable4
+    sensorTable4,
+    sensorTable5,
+    sensorTable6
   },
   data() {
     return {
