@@ -24,14 +24,18 @@ const state = {
     sensorNum: 0,
     abnormalSensorNum: 0,
     onlineSensorNum: 0,
-    elecNum: 0,
-    elecNumAbnormal: 0,
-    smogNum: 0,
-    smogNumAbnormal: 0,
-    gasNum: 0,
-    gasNumAbnormal: 0,
-    waterNum: 0,
-    waterNumAbnormal: 0
+    flowNum: 0,
+    flowNumAbnormal: 0,
+    parkNum: 0,
+    parkNumAbnormal: 0,
+    speedNum: 0,
+    speedNumAbnormal: 0,
+    checkNum: 0,
+    checkNumAbnormal: 0,
+    laneNum: 0,
+    laneNumAbnormal: 0,
+    environmentNum: 0,
+    environmentNumAbnormal: 0
   },
   //事件
   alarmEvents: [] /* {
@@ -56,10 +60,12 @@ const state = {
     earlyAlarmNum: 0, //预警事件数
 
     //用作首页报警类型占比分析
-    smogNum: 0,
-    gasNum: 0,
-    elecNum: 0,
-    waterNum: 0,
+    parkNum: 0,
+    speedNum: 0,
+    flowNum: 0,
+    checkNum: 0,
+    laneNum: 0,
+    environmentNum: 0,
 
     //仅用于警报等级作为纵坐标的警报统计表
     handledNum: 0,

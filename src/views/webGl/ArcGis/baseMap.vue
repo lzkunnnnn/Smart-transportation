@@ -1,7 +1,7 @@
 <template>
   <div id="mapView" class="relative">
     <div class="mapList" v-show="current == 'toggle'">
-      <scroll-bar style="width:250px; height:550px;color:#fff">
+      <scroll-bar style="width: 250px; height: 550px; color: #fff">
         <div id="basemapGallery"></div>
       </scroll-bar>
     </div>
@@ -73,14 +73,14 @@ export default {
           ]) => {
             this.map = new Map('mapView', {
               basemap: 'satellite',
-              center: [114.3, 30.4],
+              center: [126.632, 45.7232],
               logo: false, //取消地图默认的logo
-              zoom: 15,
+              zoom: 17,
               slider: false,
               spatialReference: { wkid: 4326 } //设置坐标系
             });
             this.map.setMapCursor('pointer'); //设置鼠标在map上时的样式为手型
-
+            
             //底图切换
             this.basemapGallery = new BasemapGallery(
               {
@@ -90,7 +90,6 @@ export default {
               'basemapGallery'
             );
             this.basemapGallery.startup();
-
             var scalebar = new Scalebar({
               map: this.map,
               attachTo: 'bottom-left',
@@ -98,7 +97,6 @@ export default {
             });
             //显示比例尺
             scalebar.show();
-
             //查询
             this.search = new Search(
               {
@@ -107,7 +105,6 @@ export default {
               'search'
             );
             this.search.startup();
-
             var stackedDom = dijit.byId('measurementDiv');
             if (stackedDom) {
               this.measurement = stackedDom;
@@ -121,9 +118,7 @@ export default {
                 document.getElementById('measurementDiv')
               );
             }
-
             this.measurement.startup();
-
             this.measurement.on('measure-start', evt => {
               this.$message.info('双击结束测量');
             });

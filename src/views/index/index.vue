@@ -11,18 +11,17 @@
         <device-status class="chart-line"></device-status>
       </a-card>
 
-      <a-card title="报警类型统计及占比分析" class="box3">
-        <alarm-pie class="chart-line"></alarm-pie>
+      <a-card class="box3">
+        <calender-chart class="calender"></calender-chart>
         <!--         <alarm-diagram class="chart-diagram"></alarm-diagram> -->
       </a-card>
     </div>
 
     <!--中间容器-->
     <div class="index-mid-container">
-      <a-card  class="box3">
- 
-          <surround-graph class="chart-line"></surround-graph>
-          <!--           <word-graph class="chart-line"></word-graph> -->
+      <a-card class="box3">
+        <surround-graph class="chart-line"></surround-graph>
+        <!--           <word-graph class="chart-line"></word-graph> -->
 
         <!--         <check-maintenance /> -->
       </a-card>
@@ -34,8 +33,8 @@
 
     <!--右边容器-->
     <div class="index-right-container">
-      <a-card class="box4">
-        <calender-chart class="calender"></calender-chart>
+      <a-card title="报警类型统计及占比分析"  class="box4">
+        <alarm-pie class="chart-line"></alarm-pie>
       </a-card>
 
       <a-card title="事件推送" class="box5">
@@ -145,6 +144,9 @@ export default {
       border: none;
       height: 320px;
       margin: 10px;
+      .calender {
+        height: 300px;
+      }
 
       .chart-line {
         height: 250px;
@@ -161,10 +163,6 @@ export default {
       margin: 10px;
       border: none;
       height: 300px;
-
-      .calender {
-        height: 300px;
-      }
 
       .chart-line {
         height: 200px;

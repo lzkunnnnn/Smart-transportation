@@ -47,7 +47,7 @@ export default {
           min: 0,
           max: 100,
           inRange: {
-            color: ['#e0ffff', '#006edd']
+            color: ['#deba57', 'rgb(220, 38, 38)']
           }
         },
         calendar: [
@@ -55,10 +55,14 @@ export default {
             left: 'center',
             top: 'middle',
             cellSize: [38, 38], // 缩小单元格大小
-            range: '2025-03',
+            range: [ '2025-03'],
+            //一二三四五六日
             dayLabel: {
               firstDay: 1,
-              nameMap: 'cn'
+              nameMap: 'cn',
+              textStyle: {
+                color: 'white'
+              }
             },
             monthLabel: {
               show: false

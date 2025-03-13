@@ -28,9 +28,9 @@ export default {
           sortOrder: sortedInfo.columnKey === 'id' && sortedInfo.order
         },
         {
-          title: '类型',
-          dataIndex: 'type',
-          key: 'type'
+          title: '设备',
+          dataIndex: 'name',
+          key: 'name'
         },
         {
           title: '状态',
@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     getSensors() {
-      axios.get('sensor/smog').then(res => {
+      axios.get('sensor/park').then(res => {
         this.data = res.data.data;
         this.data.forEach(a => {
           if (a.state == 1) {
@@ -100,7 +100,7 @@ export default {
           if (a.state == 0) {
             a.state = '⚪️离线';
           }
-          a.id = '00' + a.id;
+          a.id = String(a.id).padStart(3, '0');
           a.updateTime = a.updateTime.replace('T', '    ');
           a.operation = '详情';
         });

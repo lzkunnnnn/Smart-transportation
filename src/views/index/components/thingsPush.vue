@@ -62,8 +62,8 @@ export default {
 <style lang="scss" scoped>
 .header {
   box-sizing: border-box;
-  background-color: #fafafa;
-  border-bottom: 2px solid #e8e8e8;
+  background-color: #182030;
+  border-bottom: 2px solid #222d44;
 }
 .seamless-warp {
   height: 600px;
@@ -73,7 +73,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(10, 10%);
   grid-template-areas: 'a a b b c c c d d d';
-  border-bottom: 2px solid #e8e8e8;
+  border-bottom: 2px solid #111825;
   width: 100%;
   height: 40px;
   .a {
@@ -95,6 +95,6 @@ export default {
   }
 }
 .grid-container:not(.header):hover {
-  background-color: #ecf8ff;
+  background-color: #3b4d75;
 }
 </style>

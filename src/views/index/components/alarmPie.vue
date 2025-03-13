@@ -38,13 +38,13 @@ export default {
             top: 0,
             type: 'scroll',
             //上方小方格大小
-            itemWidth: 20,
-            itemHeight: 16,
-            data: ['smog', 'gas', 'water', 'elec', 'xxx', 'xxxx'],
+            itemWidth: 16,
+            itemHeight: 12,
+            data: ['违停', '速度', '卡口', '流量', '车道', '环境'],
             textStyle: {
               // 设置字体样式
               color: 'white', // 字体颜色为红色
-              fontSize: 16, // 字体大小（可选）
+              fontSize: 14, // 字体大小（可选）
               fontWeight: 'normal' // 字体粗细（可选）
             }
           },
@@ -58,28 +58,28 @@ export default {
               roseType: 'radius',
               data: [
                 {
-                  name: 'smog',
-                  value: this.$store.state.handleList.smogNum
+                  name: '违停',
+                  value: this.$store.state.handleList.parkNum
                 },
                 {
-                  name: 'gas',
-                  value: this.$store.state.handleList.gasNum
+                  name: '速度',
+                  value: this.$store.state.handleList.speedNum
                 },
                 {
-                  name: 'water',
-                  value: this.$store.state.handleList.waterNum
+                  name: '卡口',
+                  value: this.$store.state.handleList.checkNum
                 },
                 {
-                  name: 'elec',
-                  value: this.$store.state.handleList.elecNum
+                  name: '流量',
+                  value: this.$store.state.handleList.flowNum
                 },
                 {
-                  name: 'xxx',
-                  value: 2
+                  name: '车道',
+                  value: this.$store.state.handleList.laneNum
                 },
                 {
-                  name: 'xxxx',
-                  value: 3
+                  name: '环境',
+                  value: this.$store.state.handleList.environmentNum
                 }
               ],
               label: {},
