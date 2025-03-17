@@ -1,14 +1,12 @@
 <template>
   <div>
     <div class="grid-container header">
-      <span class="a">事件ID</span>
       <span class="b">位置</span>
       <span class="c">状态</span>
       <span class="d">更新时间</span>
     </div>
     <vue-seamless-scroll :data="$store.state.alarmEvents" class="seamless-warp" :class-option="classOption">
       <div class="grid-container" v-for="item in $store.state.alarmEvents" :key="item.id">
-        <span class="a">{{ item.id }}</span>
         <span class="b">{{ item.address }}</span>
         <span class="c">{{ item.alarmType }}</span>
         <span class="d">{{ item.updateTime }}</span>
@@ -72,7 +70,7 @@ export default {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(10, 10%);
-  grid-template-areas: 'a a b b c c c d d d';
+  grid-template-areas: 'b b b b c c c d d d';
   border-bottom: 2px solid #111825;
   width: 100%;
   height: 40px;

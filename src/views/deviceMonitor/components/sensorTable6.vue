@@ -1,6 +1,10 @@
 <template>
   <div>
-    <a-table :columns="columns" :data-source="data" @change="handleChange" />
+    <a-table :columns="columns" :data-source="data" @change="handleChange">
+      <template v-slot:operation="record">
+        <a> {{ record }}</a>
+      </template>
+    </a-table>
   </div>
 </template>
 <script>
@@ -77,7 +81,8 @@ export default {
         {
           title: '操作',
           dataIndex: 'operation',
-          key: 'operation'
+          key: 'operation',
+          scopedSlots: { customRender: 'operation' }
         }
       ];
       return columns;

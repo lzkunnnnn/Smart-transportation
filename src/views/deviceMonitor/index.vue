@@ -38,6 +38,9 @@ export default {
       sensorTable: 'sensorTable3'
     };
   },
+  mounted(){
+    this.$store.dispatch('asyncGetDeviceState');
+  },
   methods: {
     returnTable(table) {
       this.sensorTable = table;

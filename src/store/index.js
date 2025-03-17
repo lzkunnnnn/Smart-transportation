@@ -21,7 +21,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 const state = {
   //设备状态
   deviceState: {
-    sensorNum: 0,
+    /*     sensorNum: 0,
     abnormalSensorNum: 0,
     onlineSensorNum: 0,
     flowNum: 0,
@@ -35,7 +35,7 @@ const state = {
     laneNum: 0,
     laneNumAbnormal: 0,
     environmentNum: 0,
-    environmentNumAbnormal: 0
+    environmentNumAbnormal: 0 */
   },
   //事件
   alarmEvents: [] /* {
@@ -56,7 +56,7 @@ const state = {
   } */,
   //警报统计-处理情况
   handleList: {
-    alarmNum: 0, //警报事件数
+    /*     alarmNum: 0, //警报事件数
     earlyAlarmNum: 0, //预警事件数
 
     //用作首页报警类型占比分析
@@ -77,7 +77,7 @@ const state = {
     unHandledLevelOne: 0,
     unHandledLevelTwo: 0,
     unHandledLevelThree: 0,
-    unHandledLevelFour: 0
+    unHandledLevelFour: 0 */
   }
 };
 
@@ -86,54 +86,60 @@ const mutations = {
   //初始化vuex内容
   getDeviceState(state, deviceState) {
     state.deviceState = deviceState;
-    console.log('vuex-store 获取设备情况成功');
-    localStorage.setItem('deviceState', JSON.stringify(deviceState));
   },
-  //从storage中取内容初始化vuex
-  getLoaclDeviceState(state) {
-    state.deviceState = JSON.parse(localStorage.getItem('deviceState'));
-    /*     console.log(JSON.parse(localStorage.getItem('deviceState')));
-    console.log('getDeviceFromLocalStorage'); */
-  },
+
   //
   getAlarmEvents(state, alarmEvents) {
     state.alarmEvents = alarmEvents;
-    console.log('vuex-getAlarmEvents');
-    localStorage.setItem('alarmEvents', JSON.stringify(alarmEvents));
   },
   //处理/未处理事情数量
   getHandleList(state, handleList) {
     state.handleList = handleList;
-    console.log('getHandleList');
-    localStorage.setItem('handleList', handleList);
   }
 };
 
 //
 const actions = {
   asyncGetDeviceState(context) {
-    axios.get('sensor/deviceState').then(res => {
-      const deviceState = res.data.data;
-      context.commit('getDeviceState', deviceState);
-    });
-  },
-  asyncGetLocalDeviceState(context) {
-    context.commit('getLocalDeviceState');
-  },
-  //
-  async asyncGetAlarmEvents(context) {
-    try {
-      let events = await axios.get('event/getEvents');
-      events = events.data.data;
-      context.commit('getAlarmEvents', events);
-      context.commit('getDeviceState');
-    } catch (e) {
-      console.log(e);
+    if (localStorage.getItem('deviceState')) {
+      console.log('cache-deviceState');
+      context.commit('getDeviceState', JSON.parse(localStorage.getItem('deviceState')));
+    } else {
+      axios.get('sensor/deviceState').then(res => {
+        console.log('axios-deviceState');
+        const deviceState = res.data.data;
+        context.commit('getDeviceState', deviceState);
+        localStorage.setItem('deviceState', JSON.stringify(deviceState));
+      });
     }
   },
+
+  async asyncGetAlarmEvents(context) {
+    if (localStorage.getItem('alarmEvents')) {
+      console.log('cache-alarmEvents');
+      context.commit('getAlarmEvents', JSON.parse(localStorage.getItem('alarmEvents')));
+    } else {
+      axios.get('event/getEvents').then(res => {
+        console.log('axios-alarmEvents');
+        context.commit('getAlarmEvents', res.data.data);
+        context.commit('getDeviceState');
+        localStorage.setItem('alarmEvents', JSON.stringify(res.data.data));
+      });
+    }
+  },
+
   async asyncGetHandleList(context) {
-    let handleList = await axios.get('event/getHandleDTO');
-    handleList = handleList.data.data;
+    let handleList;
+    if (localStorage.getItem('handleList')) {
+      console.log('cache-handleList');
+      handleList = JSON.parse(localStorage.getItem('handleList'));
+    } else {
+      axios.get('event/getHandleDTO').then(res => {
+        console.log('axios-handleList');
+        handleList = res.data.data;
+        localStorage.setItem('handleList', JSON.stringify(res.data.data));
+      });
+    }
     context.commit('getHandleList', handleList);
   }
 };

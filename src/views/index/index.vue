@@ -27,19 +27,29 @@
       </a-card>
 
       <a-card class="box6">
-        <center-map-one class="chart-map"></center-map-one>
+        <div class="location">
+          <div class="address">
+            <span>{{ location.address }}</span>
+          </div>
+          <div class="lng">
+            <span>经度 {{ location.lng?.toFixed(4) }}</span>
+          </div>
+          <div class="lat">
+            <span>纬度 {{ location.lat?.toFixed(4) }}</span>
+          </div>
+        </div>
+        <center-map-one @location="handleLocation" class="chart-map"></center-map-one>
       </a-card>
     </div>
 
     <!--右边容器-->
     <div class="index-right-container">
-      <a-card title="报警类型统计及占比分析"  class="box4">
+      <a-card title="报警类型统计及占比分析" class="box4">
         <alarm-pie class="chart-line"></alarm-pie>
       </a-card>
 
       <a-card title="事件推送" class="box5">
         <things-push :taskPushList="taskPushList" class="char-line"></things-push>
-
         <!-- <alarm-category :alarmCategoryList="alarmCategoryList" class="chart-line" /> -->
       </a-card>
 
@@ -90,14 +100,18 @@ export default {
       deviceState: {},
       taskPushList: [],
       anomalyDataList: {},
-      alarmCategoryList: []
+      alarmCategoryList: [],
+      location: {}
     };
   },
   mounted() {
-    this.$store.dispatch('asyncGetDeviceState');
     this.$store.dispatch('asyncGetHandleList');
   },
-  methods: {}
+  methods: {
+    handleLocation(location) {
+      this.location = location;
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -188,11 +202,34 @@ export default {
     margin: 10px;
 
     .box6 {
+      border: none;
       height: 730px;
       margin-top: 10px;
       .chart-map {
         width: 100%;
         height: 650px;
+      }
+      .location {
+        display: flex;
+        height: 30px;
+        margin-bottom: 10px;
+        .address {
+          flex-basis: 300px;
+          margin-right: auto;
+        }
+        .lat,
+        .lng {
+          flex-basis: 120px;
+        }
+        .address,
+        .lat,
+        .lng {
+          background-color: #182030;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 30px;
+        }
       }
     }
 

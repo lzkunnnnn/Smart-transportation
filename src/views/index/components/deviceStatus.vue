@@ -14,7 +14,7 @@
                 <span style="color: #f69a3d"> / {{ $store.state.deviceState.checkNum }}</span>
               </template>
             </a-statistic>
-            <p>卡口涉嫌</p>
+            <p>卡口摄像</p>
           </div>
         </a-space>
       </a-col>

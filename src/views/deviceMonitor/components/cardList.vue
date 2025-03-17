@@ -206,9 +206,6 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    this.$store.dispatch('asyncGetDeviceState');
-  },
   methods: {
     sendTitle(title, key) {
       this.$emit('sendTitle', 'sensorTable1');

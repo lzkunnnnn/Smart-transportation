@@ -4,14 +4,12 @@
 
 <script>
 import echarts from 'echarts';
-import axios from '@/store/axios';
 
 export default {
   name: 'levelRank',
   props: ['handleList'],
   data() {
     return {
-      myChart: null
       /*  handleListData: {
         handledLevelOne: 0,
         handledLevelTwo: 0,
@@ -31,7 +29,6 @@ export default {
       // 确保 DOM 更新完成后初始化 ECharts
       this.initEchart();
     });
-    console.log('levelRank', this.handleList);
     /*     }); */
   },
   watch: {

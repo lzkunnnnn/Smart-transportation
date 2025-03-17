@@ -20,8 +20,7 @@ export default {
     });
   },
   methods: {
-    async initEchart() {
-      await this.$store.dispatch('asyncGetHandleList');
+    initEchart() {
       this.myChart = echarts.init(this.$refs.alarmPie);
       this.myChart.setOption(
         {
@@ -39,12 +38,12 @@ export default {
             type: 'scroll',
             //上方小方格大小
             itemWidth: 16,
-            itemHeight: 12,
+            itemHeight: 14,
             data: ['违停', '速度', '卡口', '流量', '车道', '环境'],
             textStyle: {
               // 设置字体样式
               color: 'white', // 字体颜色为红色
-              fontSize: 14, // 字体大小（可选）
+              fontSize: 12, // 字体大小（可选）
               fontWeight: 'normal' // 字体粗细（可选）
             }
           },
@@ -53,9 +52,18 @@ export default {
               name: '技术占比',
               type: 'pie',
               icon: 'circle',
-              radius: ['35%', '55%'],
+              //实心
               center: ['48%', '55%'],
-              roseType: 'radius',
+              radius: '55%',
+
+              /*            //空心
+              radius: ['35%', '55%'],
+              center: ['48%', '50%'], */
+
+              /*            //空心玫瑰图
+              radius: ['35%', '55%'],
+              center: ['48%', '50%'], 
+              roseType: 'radius', */
               data: [
                 {
                   name: '违停',

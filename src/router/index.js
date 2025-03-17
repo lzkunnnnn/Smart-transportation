@@ -56,28 +56,18 @@ export const asyncRoutes = [
         path: '/deviceMonitor',
         component: () => import('@/views/deviceMonitor/index'),
         meta: {
-          role: 4,
+          role: 2,
           title: '设备监控',
           icon: 'monitor'
         }
       },
       {
-        name: 'correlation',
-        path: '/correlation',
-        component: () => import('@/views/correlation/index'),
+        name: 'eventsPage',
+        component: () => import('@/views/eventsPage/index.vue'),
+        path: '/eventsPage',
         meta: {
-          role: 4,
-          title: '关联分析',
-          icon: 'correlation'
-        }
-      },
-      {
-        name: 'taskManage',
-        path: '/taskManage',
-        component: () => import('@/views/taskManage/index'),
-        meta: {
-          role: 5,
-          title: '交通事件管理', //taskManage
+          role: 3,
+          title: '事件管理',
           icon: 'taskManage'
         }
       },
@@ -86,12 +76,43 @@ export const asyncRoutes = [
         path: '/warningProcess',
         component: () => import('@/views/warningProcess/index'),
         meta: {
-          role: 4,
+          role: 5,
           title: '预警处理',
           icon: 'warningprocess'
         }
       },
       {
+        name: 'camera',
+        component: () => import('@/views/camera/index.vue'),
+        path: '/camera',
+        meta: {
+          role: 6,
+          title: '摄像',
+          icon: 'webGl'
+        }
+      }
+      /*       {
+        name: 'correlation',
+        path: '/correlation',
+        component: () => import('@/views/correlation/index'),
+        meta: {
+          role: 3,
+          title: '关联分析',
+          icon: 'correlation'
+        }
+      }, */
+      /*       {
+        name: 'taskManage',
+        path: '/taskManage',
+        component: () => import('@/views/taskManage/index'),
+        meta: {
+          role: 4,
+          title: '交通事件管理', //taskManage
+          icon: 'taskManage'
+        }
+      }, */
+
+      /*       {
         name: 'webGl',
         component: () => import('@/views/webGl/ArcGis/index'),
         path: '/webGl',
@@ -100,7 +121,7 @@ export const asyncRoutes = [
           title: '地图',
           icon: 'webGl'
         }
-      }
+      } */
     ]
   },
   { path: '*', redirect: '/404', hidden: true }
