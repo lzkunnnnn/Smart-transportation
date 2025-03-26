@@ -181,8 +181,6 @@ export default {
           responseType: 'blob'
         });
 
-        console.log(processedResponse)
-
         this.processedVideoBlob = processedResponse.data;
         this.processedVideoUrl = URL.createObjectURL(this.processedVideoBlob);
 
@@ -197,7 +195,7 @@ export default {
     }
   },
 
-  mounted() {
+  beforeMount() {
     this.processVideo();
   }
 };

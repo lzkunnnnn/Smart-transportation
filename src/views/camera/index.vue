@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div>
     <div style="display: flex; flex-direction: column">
       <a-card title="Video1" style="width: 100%">
@@ -75,19 +74,19 @@ export default {
       cards: [
         {
           id: '900-74',
-          channel: '和兴路1段',
+          channel: '浙江中略8段',
           longitude: 121.4787,
           latitude: 31.2348
         },
         {
           id: '906-27',
-          channel: '中央大街',
+          channel: '广东番町段',
           longitude: 121.4872,
           latitude: 31.2331
         },
         {
           id: '907-40',
-          channel: '征仪路2段',
+          channel: '广东路2段',
           longitude: 121.4864,
           latitude: 31.3229
         }
@@ -228,10 +227,3 @@ export default {
   margin-bottom: 5px;
 }
 </style>
-=======
-  <div>摄像头</div>
-</template>
-
-<script></script>
-<style scoped lang="scss"></style>
->>>>>>> 72294c9d45e6e989929270cf632563954e81f467

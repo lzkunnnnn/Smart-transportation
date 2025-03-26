@@ -82,7 +82,6 @@ export const asyncRoutes = [
         }
       },
       {
-<<<<<<< HEAD
         name: '/camera-home',
         path: '/camera-home',
         component: () => import('@/views/camera/CameraHome.vue'),
@@ -108,7 +107,7 @@ export const asyncRoutes = [
             component: () => import('@/views/camera/CameraPage.vue'),
             meta: {
               role: 6,
-              title: '摄像识别',
+              title: '摄像详细',
               icon: 'webGl'
             }
           },
@@ -123,16 +122,6 @@ export const asyncRoutes = [
             }
           }
         ],
-=======
-        name: 'camera',
-        component: () => import('@/views/camera/index.vue'),
-        path: '/camera',
-        meta: {
-          role: 6,
-          title: '摄像',
-          icon: 'webGl'
-        }
->>>>>>> 72294c9d45e6e989929270cf632563954e81f467
       }
       /*       {
         name: 'correlation',

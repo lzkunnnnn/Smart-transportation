@@ -79,15 +79,9 @@ export default {
             itemStyle: {
               color: function (params) {
                 const dataDate = params.value[0];
-<<<<<<< HEAD
                 // console.log('Checking date:', dataDate); // 打印正在检查的日期，用于调试
                 if (dataDate === todayStr) {
                   // console.log('Highlighting:', dataDate); // 打印高亮的日期，用于调试
-=======
-                console.log('Checking date:', dataDate); // 打印正在检查的日期，用于调试
-                if (dataDate === todayStr) {
-                  console.log('Highlighting:', dataDate); // 打印高亮的日期，用于调试
->>>>>>> 72294c9d45e6e989929270cf632563954e81f467
                   return 'red'; // 高亮显示今天
                 }
                 return null; // 其他日期使用 visualMap 配置的颜色
