@@ -1,28 +1,30 @@
 <template>
   <div class="cardList-wrapper">
     <a-row :gutter="24">
-      <a-col :xs="12" :md="12" :sm="12" :lg="6">
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-one" @click="sendTitle('燃气数据', 'visit')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="smokeSystem" :size="20" /> 烟雾传感器 </a-space>
+            <a-space :size="8"> <svg-icon icon="smokeSystem" :size="20" /> 违停抓拍设备 </a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="1367" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.parkNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
             <div class="abs-bottom">
-              <div style="margin-right:20px" class="inline-block">
+              <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">114个</span>
+                  <span class="bold"
+                    >{{ $store.state.deviceState.parkNum - $store.state.deviceState.parkNumAbnormal }}个</span
+                  >
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">5个</span>
+                  <span class="bold">{{ $store.state.deviceState.parkNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -31,28 +33,30 @@
         </div>
       </a-col>
 
-      <a-col :xs="12" :md="12" :sm="12" :lg="6">
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-two" @click="sendTitle2('燃气数据', 'visit')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="waterSystem" :size="20" /> 水系统 </a-space>
+            <a-space :size="8"> <svg-icon icon="waterSystem" :size="20" /> 卡口摄像头 </a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="1750" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.checkNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
             <div class="abs-bottom">
-              <div style="margin-right:20px" class="inline-block">
+              <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">154个</span>
+                  <span class="bold"
+                    >{{ $store.state.deviceState.checkNum - $store.state.deviceState.checkNumAbnormal }}个</span
+                  >
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">5个</span>
+                  <span class="bold">{{ $store.state.deviceState.checkNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -61,28 +65,30 @@
         </div>
       </a-col>
 
-      <a-col :xs="12" :md="12" :sm="12" :lg="6">
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-three" @click="sendTitle3('电气数据', 'shopCard')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 电气系统 </a-space>
+            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" />流量监控设备</a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="2269" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.flowNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
             <div class="abs-bottom">
-              <div style="margin-right:20px" class="inline-block">
+              <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">191个</span>
+                  <span class="bold"
+                    >{{ $store.state.deviceState.flowNum - $store.state.deviceState.flowNumAbnormal }}个</span
+                  >
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">9个</span>
+                  <span class="bold">{{ $store.state.deviceState.flowNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -91,28 +97,30 @@
         </div>
       </a-col>
 
-      <a-col :xs="12" :md="12" :sm="12" :lg="6">
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-four" @click="sendTitle4('支付数', 'pay')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="gasSystem" :size="20" /> 可燃气体 </a-space>
+            <a-space :size="8"> <svg-icon icon="gasSystem" :size="20" /> 区间测速设备 </a-space>
           </div>
           <div class="all-count">
-            <count-to :startVal="0" :endVal="3996" :duration="2200" />
+            <count-to :startVal="0" :endVal="$store.state.deviceState.speedNum" :duration="2200" />
             <span class="suffix">个</span>
           </div>
           <div class="card-info relative">
             <div class="abs-bottom">
-              <div style="margin-right:20px" class="inline-block">
+              <div style="margin-right: 20px" class="inline-block">
                 运转正常：
                 <a-space :size="8">
-                  <span class="bold">810个</span>
+                  <span class="bold"
+                    >{{ $store.state.deviceState.speedNum - $store.state.deviceState.speedNumAbnormal }}个</span
+                  >
                   <a-icon type="caret-down" class="down" />
                 </a-space>
               </div>
               <div class="inline-block">
                 运转异常：
                 <a-space :size="8">
-                  <span class="bold">5个</span>
+                  <span class="bold">{{ $store.state.deviceState.speedNumAbnormal }}个</span>
                   <a-icon type="caret-up" class="down" />
                 </a-space>
               </div>
@@ -121,32 +129,101 @@
         </div>
       </a-col>
 
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
+        <div class="card-item card-item-five" @click="sendTitle5('电气数据', 'shopCard')">
+          <div class="card-title">
+            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 车道监测</a-space>
+          </div>
+          <div class="all-count">
+            <count-to :startVal="0" :endVal="$store.state.deviceState.laneNum" :duration="2200" />
+            <span class="suffix">个</span>
+          </div>
+          <div class="card-info relative">
+            <div class="abs-bottom">
+              <div style="margin-right: 20px" class="inline-block">
+                运转正常：
+                <a-space :size="8">
+                  <span class="bold"
+                    >{{ $store.state.deviceState.laneNum - $store.state.deviceState.laneNumAbnormal }}个</span
+                  >
+                  <a-icon type="caret-down" class="down" />
+                </a-space>
+              </div>
+              <div class="inline-block">
+                运转异常：
+                <a-space :size="8">
+                  <span class="bold">{{ $store.state.deviceState.laneNumAbnormal }}个</span>
+                  <a-icon type="caret-up" class="down" />
+                </a-space>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a-col>
+
+      <a-col :xs="12" :md="12" :sm="12" :lg="4">
+        <div class="card-item card-item-six" @click="sendTitle6('电气数据', 'shopCard')">
+          <div class="card-title">
+            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 环境监测</a-space>
+          </div>
+          <div class="all-count">
+            <count-to :startVal="0" :endVal="$store.state.deviceState.environmentNum" :duration="2200" />
+            <span class="suffix">个</span>
+          </div>
+          <div class="card-info relative">
+            <div class="abs-bottom">
+              <div style="margin-right: 20px" class="inline-block">
+                运转正常：
+                <a-space :size="8">
+                  <span class="bold"
+                    >{{
+                      $store.state.deviceState.environmentNum - $store.state.deviceState.environmentNumAbnormal
+                    }}个</span
+                  >
+                  <a-icon type="caret-down" class="down" />
+                </a-space>
+              </div>
+              <div class="inline-block">
+                运转异常：
+                <a-space :size="8">
+                  <span class="bold">{{ $store.state.deviceState.environmentNumAbnormal }}个</span>
+                  <a-icon type="caret-up" class="down" />
+                </a-space>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a-col>
     </a-row>
   </div>
 </template>
-
 <script>
 import countTo from 'vue-count-to';
-import { sensorTable1, sensorTable2 } from '.';
+
 export default {
   name: 'cardList',
   components: { countTo },
   data() {
     return {};
   },
-  mounted() {},
   methods: {
     sendTitle(title, key) {
-      this.$emit("sendTitle", "sensorTable1");
+      this.$emit('sendTitle', 'sensorTable1');
     },
     sendTitle2(title, key) {
-      this.$emit("sendTitle", "sensorTable2");
+      this.$emit('sendTitle', 'sensorTable2');
     },
     sendTitle3(title, key) {
-      this.$emit("sendTitle", "sensorTable3");
+      this.$emit('sendTitle', 'sensorTable3');
     },
     sendTitle4(title, key) {
-      this.$emit("sendTitle", "sensorTable4");
+      this.$emit('sendTitle', 'sensorTable4');
+    },
+    sendTitle5() {
+      this.$emit('sendTitle', 'sensorTable5');
+    },
+    sendTitle6() {
+      this.$emit('sendTitle', 'sensorTable6');
     }
   }
 };
@@ -171,19 +248,31 @@ export default {
     }
     &.card-item-two {
       @include cardBg(#0c65a0, #767ef4);
-       &:hover {
+      &:hover {
         box-shadow: 0 5px 10px #737bfc;
       }
     }
     &.card-item-three {
       @include cardBg(#899002, #c6e20f);
-       &:hover {
+      &:hover {
         box-shadow: 0 5px 10px #ef9b5f;
       }
     }
     &.card-item-four {
       @include cardBg(#df4209, #f08e78);
-       &:hover {
+      &:hover {
+        box-shadow: 0 5px 10px #a6e25f;
+      }
+    }
+    &.card-item-five {
+      @include cardBg(#2bae85, #57c3c2);
+      &:hover {
+        box-shadow: 0 5px 10px #a6e25f;
+      }
+    }
+    &.card-item-six {
+      @include cardBg(#eba0b3, #f08e78);
+      &:hover {
         box-shadow: 0 5px 10px #a6e25f;
       }
     }

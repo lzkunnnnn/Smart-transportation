@@ -6,6 +6,8 @@ import store from './store';
 Vue.config.productionTip = false;
 
 import 'normalize.css/normalize.css'; //css resets
+
+
 import '@/styles/index.scss'; // global css
 
 import './icons'; //icon

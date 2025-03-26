@@ -17,6 +17,7 @@
         </a-radio-button>
       </a-radio-group>
     </div>
+    {{ LAYOUT_LIST }}
 
     <div class="item-setting flex justify-between">
       开启标签页
@@ -48,6 +49,7 @@ export default {
           value: val,
           cache: 'THEME'
         });
+        /*        document.getElementsByTagName('body')[0].className = `vue-antd-admin-${val}Theme`; */
         document.getElementsByTagName('body')[0].className = `vue-antd-admin-${val}Theme`;
       }
     },

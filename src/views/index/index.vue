@@ -1,117 +1,115 @@
 <template>
-  <div class="index-container  border-box">
+  <div class="index-container border-box">
     <!--左边容器-->
     <div class="index-left-container">
-
       <!--卡片组-->
       <a-card class="box1">
         <card-one :cardList="cardList" class="chart-bar"></card-one>
       </a-card>
 
-      <a-card title="异常发生趋势图" class="box2">
-        <anomaly-line :anomalyDataList="anomalyDataList" class="chart-line"></anomaly-line>
+      <a-card title="当前设备状态" class="box2">
+        <device-status class="chart-line"></device-status>
       </a-card>
 
-      <a-card title="近7日火警报警图" class="box3">
-        <alarm-diagram class="chart-diagram"></alarm-diagram>
+      <a-card class="box3">
+        <calender-chart class="calender"></calender-chart>
+        <!--         <alarm-diagram class="chart-diagram"></alarm-diagram> -->
       </a-card>
     </div>
 
     <!--中间容器-->
     <div class="index-mid-container">
-      <!--      <a-card class="box6">-->
-      <!--        <center-map class="chart-map"></center-map>-->
-      <!--      </a-card>-->
-      <a-card class="box6">
-        <center-map-one class="chart-map"></center-map-one>
+      <a-card class="box3">
+        <surround-graph class="chart-line"></surround-graph>
+        <!--           <word-graph class="chart-line"></word-graph> -->
+
+        <!--         <check-maintenance /> -->
       </a-card>
 
-      <a-card title="事件推送" class="box3">
-        <things-push :taskPushList="taskPushList" class="char-line"></things-push>
+      <a-card class="box6">
+        <div class="location">
+          <div class="address">
+            <span>{{ location.address }}</span>
+          </div>
+          <div class="lng">
+            <span>经度 {{ location.lng?.toFixed(4) }}</span>
+          </div>
+          <div class="lat">
+            <span>纬度 {{ location.lat?.toFixed(4) }}</span>
+          </div>
+        </div>
+        <center-map-one @location="handleLocation" class="chart-map"></center-map-one>
       </a-card>
     </div>
 
     <!--右边容器-->
     <div class="index-right-container">
-
-      <a-card title="当前设备状态" class="box4">
-        <device-status :deviceStatusList="deviceStatusList" class="chart-line"></device-status>
+      <a-card title="报警类型统计及占比分析" class="box4">
+        <alarm-pie class="chart-line"></alarm-pie>
       </a-card>
 
-      <a-card title="报警类型统计及占比分析" class="box5">
-        <alarm-category :alarmCategoryList="alarmCategoryList" class="chart-line" />
+      <a-card title="事件推送" class="box5">
+        <things-push :taskPushList="taskPushList" class="char-line"></things-push>
+        <!-- <alarm-category :alarmCategoryList="alarmCategoryList" class="chart-line" /> -->
       </a-card>
 
-      <a-card title="巡检维保任务" class="box3">
-        <check-maintenance />
-      </a-card>
+      <!--       <a-card title="异常发生趋势图--待删除" class="box3">
+        <anomaly-line :anomalyDataList="anomalyDataList" class="chart-line"></anomaly-line>
+      </a-card> -->
     </div>
   </div>
 </template>
 
 <script>
-import { anomalyLine, thingsPush, alarmDiagram, deviceStatus } from "./components";
-import CenterMapOne from "@/views/index/components/centerMapOne";
-import AlarmCategory from "@/views/index/components/alarmCategory";
-import CheckMaintenance from "@/views/index/components/checkMaintenance";
-import CardOne from "@/views/index/components/cardOne";
-import axios from "axios";
+//这一堆图用echarts做的，必须显示设置宽高才会显示
+import {
+  anomalyLine,
+  thingsPush,
+  alarmDiagram,
+  deviceStatus,
+  alarmPie,
+  calenderChart,
+  wordGraph,
+  surroundGraph
+} from './components';
+
+import CenterMapOne from '@/views/index/components/centerMapOne';
+/* import AlarmCategory from '@/views/index/components/alarmCategory'; */
+import CheckMaintenance from '@/views/index/components/checkMaintenance';
+import CardOne from '@/views/index/components/cardOne';
 
 export default {
-  name: "mapChart",
+  name: 'mapChart',
   components: {
     CardOne,
     CheckMaintenance,
-    AlarmCategory,
+    /*   AlarmCategory, */
     CenterMapOne,
+    calenderChart,
     alarmDiagram,
     deviceStatus,
+    surroundGraph,
     anomalyLine,
-    thingsPush
+    thingsPush,
+    alarmPie,
+    wordGraph
   },
   data() {
     return {
-      cardList: {},
-      deviceStatusList: {},
+      cardList: { deviceNum: 0, onlineNum: 0, abnormalNum: 0 },
+      deviceState: {},
       taskPushList: [],
       anomalyDataList: {},
       alarmCategoryList: [],
+      location: {}
     };
   },
-  created() {
-    this.getCardList();
-    this.getDeviceStatusList();
-    this.getTaskPushList();
-    this.getAnomalyDataList();
-    this.getAlarmCategoryList();
+  mounted() {
+    this.$store.dispatch('asyncGetHandleList');
   },
   methods: {
-
-    getCardList() {
-      axios.get("http://127.0.0.1:4523/mock/826638/index/cardList").then(res => {
-        this.cardList = res.data.data.cardList;
-      });
-    },
-    getDeviceStatusList() {
-      axios.get("http://127.0.0.1:4523/mock2/826649/17732395").then(res => {
-        this.deviceStatusList = res.data.data.deviceStatusList;
-      });
-    },
-    getTaskPushList() {
-      axios.get("http://127.0.0.1:4523/m2/826649-0-default/17734714").then(res => {
-        this.taskPushList = res.data.data.taskPushList;
-      });
-    },
-    getAnomalyDataList() {
-      axios.get("http://127.0.0.1:4523/mock/826649/anomalyDataList").then(res => {
-        this.anomalyDataList = res.data.data.anomalyDataList;
-        console.log(this.anomalyDataList);
-      });
-    },
-    getAlarmCategoryList() {
-      axios.get("http://127.0.0.1:4523/mock/826649/alarmCategoryList").then(res => {
-        this.alarmCategoryList = res.data.data.alarmCategoryList;
-      });
+    handleLocation(location) {
+      this.location = location;
     }
   }
 };
@@ -125,7 +123,8 @@ export default {
   margin: 0 auto;
   display: flex;
   //设置左右在页面的分数
-  .index-left-container, .index-right-container {
+  .index-left-container,
+  .index-right-container {
     flex: 3;
 
     .box1 {
@@ -159,6 +158,9 @@ export default {
       border: none;
       height: 320px;
       margin: 10px;
+      .calender {
+        height: 300px;
+      }
 
       .chart-line {
         height: 250px;
@@ -185,9 +187,9 @@ export default {
     .box5 {
       margin: 10px;
       border: none;
-      height: 400px;
+      height: 730px;
 
-      .chart-diagram {
+      .chart-line {
         height: 300px;
         width: 100%;
       }
@@ -201,21 +203,41 @@ export default {
 
     .box6 {
       border: none;
-      height: 710px;
-
+      height: 730px;
+      margin-top: 10px;
       .chart-map {
         width: 100%;
         height: 650px;
+      }
+      .location {
+        display: flex;
+        height: 30px;
+        margin-bottom: 10px;
+        .address {
+          flex-basis: 300px;
+          margin-right: auto;
+        }
+        .lat,
+        .lng {
+          flex-basis: 120px;
+        }
+        .address,
+        .lat,
+        .lng {
+          background-color: #182030;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 30px;
+        }
       }
     }
 
     .box3 {
       border: none;
-      height: 320px;
-      margin-top: 10px;
-
+      height: 300px;
       .chart-line {
-        height: 200px;
+        height: 260px;
         width: 100%;
       }
 
@@ -227,5 +249,4 @@ export default {
     }
   }
 }
-
 </style>

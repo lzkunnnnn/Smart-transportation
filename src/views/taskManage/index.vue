@@ -11,14 +11,12 @@
     </div>
 
     <div v-show="listShow" class="table-transfer">
-      <transfer-table ref="transferTable" class="table-list"/>
+      <transfer-table ref="transferTable" class="table-list" />
     </div>
-
 
     <div class="word-container">
-      <word-graph class="chart-line"/>
+      <word-graph class="chart-line" />
     </div>
-
 
     <!--下部分容器-->
     <div class="bottom-container">
@@ -36,45 +34,47 @@
 </template>
 
 <script>
-import { pieOne, lineOne, lineTwo } from "./components";
-import TaskTable from "@/views/taskManage/components/taskTable";
-import WordGraph from "@/views/taskManage/components/wordGraph";
-import TransferTable from "@/views/taskManage/components/transferTable";
-import axios from "axios";
+import { pieOne, lineOne, lineTwo, surroundGraph } from './components';
+import TaskTable from '@/views/taskManage/components/taskTable';
+import WordGraph from '@/views/taskManage/components/wordGraph';
+import TransferTable from '@/views/taskManage/components/transferTable';
+import axios from 'axios';
 
-const AMonthToken = process.env.VUE_APP_NLPTOKEN
+const AMonthToken = process.env.VUE_APP_NLPTOKEN;
 export default {
-  name: "index",
+  name: 'index',
   components: {
     TransferTable,
     WordGraph,
     TaskTable,
+    surroundGraph,
     lineOne,
     lineTwo,
     pieOne
   },
   data() {
     return {
-      listShow:false,
+      listShow: false
     };
   },
   methods: {
     onSearch(value) {
-      this.listShow=!this.listShow;
-      this.onTransfer(value)
-      this.$refs.transferTable.clearData()
+      this.listShow = !this.listShow;
+      this.onTransfer(value);
+      this.$refs.transferTable.clearData();
     },
-    onTransfer(textRecords){
-      axios.post("https://aip.baidubce.com/rpc/2.0/nlp/v1/address?access_token="+AMonthToken+"&text="+textRecords).then(res => {
-        this.$refs.transferTable.getNLPData(res.data)
-        //console.log(this.afterTransferContent.person)
-        // this.afterTransferContent=new TableModel(1,res.data.log_id,"二级", res.data.person,
-        //   res.data.city+res.data.county+res.data.town,this.getCurrentTime(),"🔴待处理",res.data.person,"未知")
-        // alert(this.afterTransferContent.address)
-      });
-    },
+    onTransfer(textRecords) {
+      axios
+        .post('https://aip.baidubce.com/rpc/2.0/nlp/v1/address?access_token=' + AMonthToken + '&text=' + textRecords)
+        .then(res => {
+          this.$refs.transferTable.getNLPData(res.data);
+          //console.log(this.afterTransferContent.person)
+          // this.afterTransferContent=new TableModel(1,res.data.log_id,"二级", res.data.person,
+          //   res.data.city+res.data.county+res.data.town,this.getCurrentTime(),"🔴待处理",res.data.person,"未知")
+          // alert(this.afterTransferContent.address)
+        });
+    }
   }
-
 };
 </script>
 <style lang="scss" scoped>
@@ -109,8 +109,6 @@ export default {
       width: 800px;
       margin-top: 60px;
     }
-
-
   }
 
   .word-container {
@@ -129,7 +127,7 @@ export default {
     }
   }
 
-  .table-transfer{
+  .table-transfer {
     border: none;
     height: 120px;
     width: 100%;
@@ -138,7 +136,7 @@ export default {
     margin-bottom: 5px;
     display: flex;
     justify-content: center;
-    .table-list{
+    .table-list {
       border: none;
       width: 1500px;
       height: 30px;

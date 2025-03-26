@@ -4,13 +4,17 @@
       <a-col :span="10" class="gutter-box">
         <a-space :size="8" align="center">
           <svg-icon icon="waterSystem" :size="50" />
+
           <div class="textBox">
-            <a-statistic :value="deviceStatusList.waterOnline" :value-style="{ color: '#f69a3d' }">
+            <a-statistic
+              :value="$store.state.deviceState.checkNum - $store.state.deviceState.checkNumAbnormal"
+              :value-style="{ color: ' #42d756' }"
+            >
               <template #suffix>
-                <span style="color: #42d756"> / {{deviceStatusList.waterTotal}}</span>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.checkNum }}</span>
               </template>
             </a-statistic>
-            <p>水系统</p>
+            <p>卡口摄像</p>
           </div>
         </a-space>
       </a-col>
@@ -18,12 +22,15 @@
         <a-space :size="8" align="center">
           <svg-icon icon="smokeSystem" :size="50" />
           <div class="textBox">
-            <a-statistic :value="deviceStatusList.somkeOnline" :value-style="{ color: '#f69a3d' }">
+            <a-statistic
+              :value="$store.state.deviceState.parkNum - $store.state.deviceState.parkNumAbnormal"
+              :value-style="{ color: '#42d756' }"
+            >
               <template #suffix>
-                <span style="color: #42d756"> / {{ deviceStatusList.somkeTotal }}</span>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.parkNum }}</span>
               </template>
             </a-statistic>
-            <p>烟雾</p>
+            <p>违停抓拍</p>
           </div>
         </a-space>
       </a-col>
@@ -34,12 +41,15 @@
         <a-space :size="8" align="center">
           <svg-icon icon="electronicSystem" :size="50" />
           <div class="textBox">
-            <a-statistic :value="deviceStatusList.electricOnline" :value-style="{ color: '#f69a3d' }">
+            <a-statistic
+              :value="$store.state.deviceState.flowNum - $store.state.deviceState.flowNumAbnormal"
+              :value-style="{ color: '#42d756' }"
+            >
               <template #suffix>
-                <span style="color: #42d756"> / {{ deviceStatusList.electricTotal }}</span>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.flowNum }}</span>
               </template>
             </a-statistic>
-            <p>电气火灾</p>
+            <p>流量监测</p>
           </div>
         </a-space>
       </a-col>
@@ -47,34 +57,70 @@
         <a-space :size="8" align="center">
           <svg-icon icon="gasSystem" :size="50" />
           <div class="textBox">
-            <a-statistic :value="deviceStatusList.gasOnline" :value-style="{ color: '#f69a3d' }">
+            <a-statistic
+              :value="$store.state.deviceState.speedNum - $store.state.deviceState.speedNumAbnormal"
+              :value-style="{ color: '#42d756' }"
+            >
               <template #suffix>
-                <span style="color: #42d756"> / {{ deviceStatusList.gasTotal }}</span>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.speedNum }}</span>
               </template>
             </a-statistic>
-            <p>可燃气体</p>
+            <p>区间测速</p>
           </div>
         </a-space>
       </a-col>
     </a-row>
-
-
+    <a-row type="flex" justify="space-around" align="middle" class="rowBox">
+      <a-col :span="10" class="gutter-box">
+        <a-space :size="8" align="center">
+          <svg-icon icon="electronicSystem" :size="50" />
+          <div class="textBox">
+            <a-statistic
+              :value="$store.state.deviceState.laneNum - $store.state.deviceState.laneNumAbnormal"
+              :value-style="{ color: '#42d756' }"
+            >
+              <template #suffix>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.laneNum }}</span>
+              </template>
+            </a-statistic>
+            <p>车道监测</p>
+          </div>
+        </a-space>
+      </a-col>
+      <a-col :span="10" class="gutter-box">
+        <a-space :size="8" align="center">
+          <svg-icon icon="gasSystem" :size="50" />
+          <div class="textBox">
+            <a-statistic
+              :value="$store.state.deviceState.environmentNum - $store.state.deviceState.environmentNumAbnormal"
+              :value-style="{ color: '#42d756' }"
+            >
+              <template #suffix>
+                <span style="color: #f69a3d"> / {{ $store.state.deviceState.environmentNum }}</span>
+              </template>
+            </a-statistic>
+            <p>环境监测</p>
+          </div>
+        </a-space>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
 <script>
 export default {
   name: 'deviceStatus',
-  props:['deviceStatusList'],
   data() {
     return {};
   },
+  mounted() {
+    this.$store.dispatch('asyncGetDeviceState');
+  }
 };
-
 </script>
 <style lang="scss" scoped>
 .centerContainer {
-  align-item: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
   .rowBox {
@@ -84,12 +130,12 @@ export default {
     flex: none;
     .gutter-box {
       padding: 5px 0;
-      .textBox{
+      .textBox {
         width: 100%;
         display: inline-block;
         padding-top: 1px;
         padding-left: 10px;
-        .textStyle{
+        .textStyle {
           color: #1afa29;
         }
       }
@@ -98,13 +144,11 @@ export default {
         width: 100%;
       }
     }
-
   }
 }
 
-.gutter-example > > > .ant-row > div {
+.gutter-example > .ant-row > div {
   background: transparent;
   border: 0;
 }
-
 </style>

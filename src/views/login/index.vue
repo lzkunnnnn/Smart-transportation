@@ -8,7 +8,7 @@
         :wrapper-col="{ span: 22 }"
         ref="loginForm"
       >
-        <div class="title">智慧消防</div>
+        <div class="title">智慧交通</div>
         <a-tabs v-model="currentTab" class="tabs" :tabBarGutter="35">
           <a-tab-pane key="user" tab="账号密码登录">
             <a-form-model-item prop="username" v-if="currentTab === 'user'">
@@ -55,31 +55,29 @@
                 placeholder="请输入验证码"
                 size="large"
                 :maxLength="6"
-                style="width:58%;"
+                style="width: 58%"
                 ref="code"
                 @pressEnter="toLogin"
               >
               </a-input>
-              <a-button size="large" @click="getCode" :disabled="codeStatus" style="width:35%;margin-left:7%">{{
+              <a-button size="large" @click="getCode" :disabled="codeStatus" style="width: 35%; margin-left: 7%">{{
                 phoneCode
               }}</a-button>
             </a-form-model-item>
           </a-tab-pane>
         </a-tabs>
 
-        <a-form-item style="margin-top:-7px">
-          <a-button type="primary" block size="large" :loading="loading" @click="toLogin">
-            登录
-          </a-button>
+        <a-form-item style="margin-top: -7px">
+          <a-button type="primary" block size="large" :loading="loading" @click="toLogin"> 登录 </a-button>
         </a-form-item>
-        <a-form-item style="margin-top:-7px">
+        <a-form-item style="margin-top: -7px">
           <a-checkbox v-model="loginForm.remember" v-if="currentTab === 'user'">记住密码</a-checkbox>
           <span class="forge-password pointer">忘记密码</span>
         </a-form-item>
-        <a-form-item style="margin-top:-20px">
-          <span style="margin-right:15px">其他登录方式</span>
+        <a-form-item style="margin-top: -20px">
+          <span style="margin-right: 15px">其他登录方式</span>
           <svg-icon icon="weixin" :size="25" class="pointer verticalMiddle"></svg-icon>
-          <svg-icon icon="qq" :size="25" style="margin:0 14px" class="pointer verticalMiddle"></svg-icon>
+          <svg-icon icon="qq" :size="25" style="margin: 0 14px" class="pointer verticalMiddle"></svg-icon>
           <svg-icon icon="zhifubao" :size="25" class="pointer verticalMiddle"></svg-icon>
           <span class="forge-password pointer">注册账户</span>
         </a-form-item>
@@ -195,10 +193,12 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
+
           if (this.currentTab === 'user') {
             const { username, password } = this.loginForm;
             this.$store
               .dispatch('user/login', { username, password })
+
               .then(() => {
                 if (this.loginForm.remember) {
                   setCache('LOGIN_INFO', { username, password });
@@ -254,8 +254,8 @@ export default {
       height: 550px;
       margin: 0 auto;
       margin-right: 0;
-     padding-top: 55%;
-    transform: translateY(-50%);
+      padding-top: 55%;
+      transform: translateY(-50%);
       .title {
         font-weight: 700;
         font-size: 1.8rem;

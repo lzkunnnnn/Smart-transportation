@@ -1,78 +1,74 @@
 <template>
-<!--    <div :data="rankData" :class-option="classOption" :key="num">-->
-<!--      <div class="shop-item flex" v-for="(item, index) in rankData" :key="index">-->
-<!--        <div style="width:130px">-->
-<!--          <span class="rankIndex inline-block">-->
-<!--            <svg-icon :icon="rankIndex[index + 1]" :size="25" v-if="index <= 4" />-->
-<!--            <span v-else> {{ index + 1 }}</span>-->
-<!--          </span>-->
-
-<!--          <span style="margin-left:10px">{{ item.area }}</span>-->
-<!--        </div>-->
-<!--&lt;!&ndash;        <a-progress&ndash;&gt;-->
-<!--&lt;!&ndash;          :stroke-color="{&ndash;&gt;-->
-<!--&lt;!&ndash;            from: '#3dadf6',&ndash;&gt;-->
-<!--&lt;!&ndash;            to: '#737bfc'&ndash;&gt;-->
-<!--&lt;!&ndash;          }"&ndash;&gt;-->
-<!--&lt;!&ndash;          :percent="filterValue(item.value)"&ndash;&gt;-->
-<!--&lt;!&ndash;          class="flex-sub"&ndash;&gt;-->
-<!--&lt;!&ndash;          :showInfo="false"&ndash;&gt;-->
-<!--&lt;!&ndash;        />&ndash;&gt;-->
-<!--&lt;!&ndash;        <div style="margin-left:10px">{{ item.value }}</div>&ndash;&gt;-->
-<!--      </div>-->
-<!--    </div>-->
   <div ref="levelRank"></div>
-
 </template>
 
 <script>
-
-import echarts from "echarts";
+import echarts from 'echarts';
 
 export default {
-  name: "levelRank",
-  // props: {
-  //   rankData: Array
-  // },
+  name: 'levelRank',
+  props: ['handleList'],
   data() {
     return {
-      rankIndex: {
-        1: "level1",
-        2: "level2",
-        3: "level3",
-        4: "level4",
-      },
-      rankData: [
-        { "area": "一级警报", "value": 8 },
-        { "area": "二级警报", "value": 12 },
-        { "area": "三级警报", "value": 34 },
-        { "area": "四级警报", "value": 27 }
-      ],
+      /*  handleListData: {
+        handledLevelOne: 0,
+        handledLevelTwo: 0,
+        handledLevelThree: 0,
+        handledLevelFour: 0,
+        unHandledLevelOne: 0,
+        unHandledLevelTwo: 0,
+        unHandledLevelThree: 0,
+        unHandledLevelFour: 0
+      } */
     };
   },
   mounted() {
+    /*  axios.get('event/getHandleDTO').then(res => {
+      this.handleListData = res.data.data; // 更新数据 */
     this.$nextTick(() => {
+      // 确保 DOM 更新完成后初始化 ECharts
       this.initEchart();
     });
-
+    /*     }); */
+  },
+  watch: {
+    // 监听 handleList 的变化，当数据更新时重新初始化图表
+    handleList: {
+      deep: true,
+      handler() {
+        this.initEchart();
+      }
+    }
   },
   methods: {
     initEchart() {
       this.myChart = echarts.init(this.$refs.levelRank);
+      const handledArray = [
+        this.handleList.handledLevelFour,
+        this.handleList.handledLevelThree,
+        this.handleList.handledLevelTwo,
+        this.handleList.handledLevelOne
+      ];
+      const unHandledArray = [
+        this.handleList.unHandledLevelFour,
+        this.handleList.unHandledLevelThree,
+        this.handleList.unHandledLevelTwo,
+        this.handleList.unHandledLevelOne
+      ];
+      console.log(handledArray);
       this.myChart.setOption(
         {
           tooltip: {
             trigger: 'axis',
             axisPointer: {
-              // Use axis to trigger tooltip
               type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
             }
           },
           legend: {
             show: true,
             textStyle: {
-              color: '#000000'
-            },
+              color: 'white'
+            }
           },
           grid: {
             left: '3%',
@@ -86,13 +82,12 @@ export default {
           },
           yAxis: {
             type: 'category',
-            data: ['四级警报', '三级警报', '二级警报', '一级警报',],
+            data: ['四级警报', '三级警报', '二级警报', '一级警报'],
             axisLabel: {
               textStyle: {
-                color: "#000000",
-              },
+                color: 'white'
+              }
             }
-
           },
           series: [
             {
@@ -105,15 +100,14 @@ export default {
               },
               itemStyle: {
                 normal: {
-                  color: '#3dadf6',
+                  color: ' rgb(67, 56, 202)'
                 }
-
                 // borderColor: '#fff'
               },
               emphasis: {
                 focus: 'series'
               },
-              data: [189, 202, 124, 97,]
+              data: handledArray
             },
             {
               name: '待处理',
@@ -124,48 +118,20 @@ export default {
                 show: true
               },
               itemStyle: {
-                color: 'rgb(249,129,159)',
+                color: ' rgb(244, 63, 94)'
                 // borderColor: '#fff'
               },
               emphasis: {
                 focus: 'series'
               },
-              data: [63, 73, 89, 56,]
-            },
-
+              data: unHandledArray
+            }
           ]
         },
         true
       );
-    },
+    }
   }
-  // computed: {
-  //   max() {
-  //     if (this.rankData.length === 0) return 0;
-  //     return this.rankData[0].value;
-  //   }
-  // },
-  //
-  // methods: {
-  //   filterValue(val) {
-  //     if (!val || this.max === 0) {
-  //       return 0;
-  //     }
-  //     return parseInt((val / 81)*100);
-  //   }
-  // }
 };
 </script>
-<style lang="scss" scoped>
-.shop-item {
-  margin-bottom: 16px;
-  font-size: 1rem;
-
-  .rankIndex {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    vertical-align: middle;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

@@ -1,42 +1,51 @@
 <template>
-  <div class="index-container  border-box" >
+  <div class="index-container border-box">
     <card-list @sendTitle="returnTable" />
     <a-card class="top-container">
-    <keep-alive>
-      <component :is="sensorTable"></component>
-    </keep-alive>
+      <keep-alive>
+        <component :is="sensorTable"></component>
+      </keep-alive>
     </a-card>
   </div>
 </template>
 
 <script>
-import { cardList} from './components';
-import DepartmentSelection from './components/departmentSelection.vue';
-import sensorTable1 from './components/sensorTable1.vue';
-import sensorTable2 from './components/sensorTable2.vue';
-import sensorTable3 from './components/sensorTable3.vue';
-import sensorTable4 from './components/sensorTable4.vue';
+import {
+  cardList,
+  sensorTable1,
+  sensorTable2,
+  sensorTable3,
+  sensorTable4,
+  sensorTable5,
+  sensorTable6
+} from './components';
+/* import DepartmentSelection from './components/departmentSelection.vue'; */
+
 export default {
   name: 'index',
   components: {
     cardList,
-    DepartmentSelection,
+    /*     DepartmentSelection, */
     sensorTable1,
     sensorTable2,
     sensorTable3,
-    sensorTable4
+    sensorTable4,
+    sensorTable5,
+    sensorTable6
   },
   data() {
     return {
-      sensorTable:'sensorTable2'
+      sensorTable: 'sensorTable3'
     };
   },
-  methods:{
-    returnTable(table){
-      this.sensorTable=table
+  mounted(){
+    this.$store.dispatch('asyncGetDeviceState');
+  },
+  methods: {
+    returnTable(table) {
+      this.sensorTable = table;
     }
   }
-
 };
 </script>
 <style lang="scss" scoped>
@@ -66,7 +75,7 @@ export default {
   .sale-list {
     margin: 25px 0;
   }
-  .tableContainer{
+  .tableContainer {
     height: 600px;
   }
   .table-wrapper {
