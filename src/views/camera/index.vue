@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div>
     <div style="display: flex; flex-direction: column">
       <a-card title="Video1" style="width: 100%">
@@ -227,3 +228,10 @@ export default {
   margin-bottom: 5px;
 }
 </style>
+=======
+  <div>摄像头</div>
+</template>
+
+<script></script>
+<style scoped lang="scss"></style>
+>>>>>>> 72294c9d45e6e989929270cf632563954e81f467
