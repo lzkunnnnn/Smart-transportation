@@ -27,7 +27,7 @@ module.exports = {
   lintOnSave: false,
   devServer: {
     open: true,
-    port:8082,//这个是项目启动占用哪个端口
+    port: 8082, //这个是项目启动占用哪个端口
     overlay: {
       warnings: false,
       errors: true
@@ -35,11 +35,11 @@ module.exports = {
     before: !isProd ? require('./mock/mock-server.js') : '',
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
-       /*  target:'http://10.172.2.167:8080/', */
+        target: 'http://123.57.35.191:8080',
+        /*  target:'http://10.172.2.167:8080/', */
         changeOrigin: true
-      },
-/*       '/mock': {
+      }
+      /*       '/mock': {
         target: 'http://localhost:8999',
         changeOrigin: true,
         pathRewrite: {

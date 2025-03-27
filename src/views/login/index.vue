@@ -144,11 +144,15 @@ export default {
     };
   },
   mounted() {
+    localStorage.clear();
     const cache = getCache('LOGIN_INFO');
     if (cache) {
       this.loginForm.username = cache.username;
       this.loginForm.password = cache.password;
     }
+    this.$store.dispatch('asyncGetAlarmEvents');
+    this.$store.dispatch('asyncGetDeviceState');
+    this.$store.dispatch('asyncGetHandleList');
   },
   methods: {
     focusPassword() {

@@ -71,7 +71,7 @@ export default {
         }); */
     },
     getEvents() {
-      this.$store.dispatch('asyncGetAlarmEvents');
+      this.$store.dispatch('getAlarmEvents');
       /*     console.log(this.$store.state.alarmEvents); */
     },
     handleChange(pagination, filters, sorter) {

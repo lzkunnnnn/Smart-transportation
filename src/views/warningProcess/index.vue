@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     update() {
+      this.$store.dispatch('updateHandleList');
       this.$store.dispatch('asyncGetHandleList');
     },
     getTitle(title, key) {

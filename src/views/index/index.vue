@@ -75,24 +75,24 @@ import {
 
 import CenterMapOne from '@/views/index/components/centerMapOne';
 /* import AlarmCategory from '@/views/index/components/alarmCategory'; */
-import CheckMaintenance from '@/views/index/components/checkMaintenance';
+/* import CheckMaintenance from '@/views/index/components/checkMaintenance'; */
 import CardOne from '@/views/index/components/cardOne';
 
 export default {
   name: 'mapChart',
   components: {
     CardOne,
-    CheckMaintenance,
+/*     CheckMaintenance, */
     /*   AlarmCategory, */
     CenterMapOne,
     calenderChart,
-    alarmDiagram,
+/*     alarmDiagram, */
     deviceStatus,
     surroundGraph,
-    anomalyLine,
+/*     anomalyLine, */
     thingsPush,
     alarmPie,
-    wordGraph
+/*     wordGraph */
   },
   data() {
     return {

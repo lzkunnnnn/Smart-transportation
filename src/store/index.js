@@ -114,7 +114,7 @@ const actions = {
     }
   },
 
-  async asyncGetAlarmEvents(context) {
+  asyncGetAlarmEvents(context) {
     if (localStorage.getItem('alarmEvents')) {
       console.log('cache-alarmEvents');
       context.commit('getAlarmEvents', JSON.parse(localStorage.getItem('alarmEvents')));
@@ -127,8 +127,16 @@ const actions = {
       });
     }
   },
-
-  async asyncGetHandleList(context) {
+  
+  getAlarmEvents(context) {
+    axios.get('event/getEvents').then(res => {
+      console.log('axios-alarmEvents');
+      context.commit('getAlarmEvents', res.data.data);
+      context.commit('getDeviceState');
+      localStorage.setItem('alarmEvents', JSON.stringify(res.data.data));
+    });
+  },
+  asyncGetHandleList(context) {
     let handleList;
     if (localStorage.getItem('handleList')) {
       console.log('cache-handleList');
@@ -141,6 +149,14 @@ const actions = {
       });
     }
     context.commit('getHandleList', handleList);
+  },
+
+  updateHandleList(context) {
+    axios.get('event/getHandleDTO').then(res => {
+      console.log('updatehandleList');
+      localStorage.setItem('handleList', JSON.stringify(res.data.data));
+      context.commit('getHandleList', res.data.data);
+    });
   }
 };
 
