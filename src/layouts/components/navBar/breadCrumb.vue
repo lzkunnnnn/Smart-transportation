@@ -1,7 +1,7 @@
 <template>
-  <a-breadcrumb class="flex-sub bread-wrapper" separator="/">
+  <a-breadcrumb class="flex-sub bread-wrapper aaaaaaaaaa" separator="/">
     <a-breadcrumb-item v-for="(item, index) in breadList" :key="item.path">
-      <router-link v-if="index == 0 && breadList.length > 1" :to="item.path">{{ item.meta.title }}</router-link>
+      <router-link v-if="index === 0 && breadList.length > 1" :to="item.path">{{ item.meta.title }}</router-link>
       <span v-else>{{ item.meta.title }}</span>
     </a-breadcrumb-item>
   </a-breadcrumb>
@@ -28,7 +28,7 @@ export default {
           title: '首页'
         }
       };
-      if (matched[0].path == '/index') {
+      if (matched[0].path === '/index') {
         this.breadList = [home];
       } else {
         this.breadList = [home, ...matched];

@@ -82,14 +82,46 @@ export const asyncRoutes = [
         }
       },
       {
-        name: 'camera',
-        component: () => import('@/views/camera/index.vue'),
-        path: '/camera',
+        name: '/camera-home',
+        path: '/camera-home',
+        component: () => import('@/views/camera/CameraHome.vue'),
         meta: {
-          role: 6,
+          role: 4,
           title: '摄像',
           icon: 'webGl'
-        }
+        },
+        children: [
+          {
+            name: 'camera',
+            path: '/camera',
+            component: () => import('@/views/camera/index.vue'),
+            meta: {
+              role: 6,
+              title: '摄像',
+              icon: 'webGl'
+            }
+          },
+          {
+            name: 'camera-page',
+            path: '/camera-page',
+            component: () => import('@/views/camera/CameraPage.vue'),
+            meta: {
+              role: 6,
+              title: '摄像详细',
+              icon: 'webGl'
+            }
+          },
+          {
+            name: 'accident-detection',
+            path: '/accident-detection',
+            component: () => import('@/views/camera/AccidentDetection.vue'),
+            meta: {
+              role: 6,
+              title: '事件处理',
+              icon: 'webGl'
+            }
+          }
+        ],
       }
       /*       {
         name: 'correlation',
