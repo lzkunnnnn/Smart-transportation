@@ -4,7 +4,7 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-one" @click="sendTitle('燃气数据', 'visit')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="smokeSystem" :size="20" /> 违停抓拍设备 </a-space>
+            <a-space :size="8"> <svg-icon icon="monitor" :size="20" /> 违停抓拍设备 </a-space>
           </div>
           <div class="all-count">
             <count-to :startVal="0" :endVal="$store.state.deviceState.parkNum" :duration="2200" />
@@ -36,7 +36,7 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-two" @click="sendTitle2('燃气数据', 'visit')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="waterSystem" :size="20" /> 卡口摄像头 </a-space>
+            <a-space :size="8"> <svg-icon icon="visit" :size="20" /> 卡口摄像头 </a-space>
           </div>
           <div class="all-count">
             <count-to :startVal="0" :endVal="$store.state.deviceState.checkNum" :duration="2200" />
@@ -68,7 +68,7 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-three" @click="sendTitle3('电气数据', 'shopCard')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" />流量监控设备</a-space>
+            <a-space :size="8"> <svg-icon icon="car-front" :size="20" />流量监控设备</a-space>
           </div>
           <div class="all-count">
             <count-to :startVal="0" :endVal="$store.state.deviceState.flowNum" :duration="2200" />
@@ -100,7 +100,7 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-four" @click="sendTitle4('支付数', 'pay')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="gasSystem" :size="20" /> 区间测速设备 </a-space>
+            <a-space :size="8"> <svg-icon icon="dashboard" :size="20" /> 区间测速设备 </a-space>
           </div>
           <div class="all-count">
             <count-to :startVal="0" :endVal="$store.state.deviceState.speedNum" :duration="2200" />
@@ -132,7 +132,7 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-five" @click="sendTitle5('电气数据', 'shopCard')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 车道监测</a-space>
+            <a-space :size="8"> <svg-icon icon="columns" :size="20" /> 车道监测</a-space>
           </div>
           <div class="all-count">
             <count-to :startVal="0" :endVal="$store.state.deviceState.laneNum" :duration="2200" />
@@ -164,7 +164,7 @@
       <a-col :xs="12" :md="12" :sm="12" :lg="4">
         <div class="card-item card-item-six" @click="sendTitle6('电气数据', 'shopCard')">
           <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="electronicSystem" :size="20" /> 环境监测</a-space>
+            <a-space :size="8"> <svg-icon icon="sun-fill" :size="20" /> 环境监测</a-space>
           </div>
           <div class="all-count">
             <count-to :startVal="0" :endVal="$store.state.deviceState.environmentNum" :duration="2200" />

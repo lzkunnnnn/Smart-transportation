@@ -129,68 +129,7 @@ export default {
     }
   }
 };
-const data = [
-  {
-    key: '1',
-    id: '001',
-    type: '水数据',
-    status: '🟢运转正常',
-    level: '一级',
-    address: '1号食堂1层',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '2',
-    id: '002',
-    type: '水数据',
-    status: '🟢运转正常',
-    level: '一级',
-    address: '1号食堂2层',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '3',
-    id: '003',
-    type: '水数据',
-    status: '🟢运转正常',
-    level: '一级',
-    address: '2号食堂1层',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '4',
-    id: '004',
-    type: '水数据',
-    status: '🟢运转正常',
-    level: '一级',
-    address: '2号食堂2层',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '5',
-    id: '005',
-    type: '水数据',
-    status: '🔴通信不畅',
-    level: '二级',
-    address: '3号食堂1层',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '6',
-    id: '006',
-    type: '水数据',
-    status: '🟢运转正常',
-    level: '一级',
-    address: '3号食堂2层',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  }
-];
+const data = [];
 </script>
 <style scoped>
 .table-operations {

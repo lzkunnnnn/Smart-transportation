@@ -1,4 +1,5 @@
 <template>
+  <!-- 没用上 -->
   <div>
     <div class="wrapper" v-for="progress in animatedProgressList" :key="progress.title">
       <div class="title">{{ progress.title }}</div>
@@ -66,7 +67,6 @@ export default {
   }
   .percentage {
     width: 360px;
-
   }
   ::v-deep .ant-progress-text {
     color: white !important;

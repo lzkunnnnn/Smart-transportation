@@ -78,7 +78,16 @@ const state = {
     unHandledLevelTwo: 0,
     unHandledLevelThree: 0,
     unHandledLevelFour: 0 */
-  }
+  },
+  progressList: [
+    1, 2, 3, 4, 5, 6
+    /*     park: 0,
+    check: 0,
+    flow: 0,
+    speed: 0,
+    lane: 0,
+    environment: 0 */
+  ]
 };
 
 //修改store中值的唯一方法
@@ -95,6 +104,9 @@ const mutations = {
   //处理/未处理事情数量
   getHandleList(state, handleList) {
     state.handleList = handleList;
+  },
+  changeProgressList(state, progressList) {
+    state.progressList = progressList;
   }
 };
 
@@ -127,7 +139,7 @@ const actions = {
       });
     }
   },
-  
+
   getAlarmEvents(context) {
     axios.get('event/getEvents').then(res => {
       console.log('axios-alarmEvents');
@@ -150,13 +162,37 @@ const actions = {
     }
     context.commit('getHandleList', handleList);
   },
-
   updateHandleList(context) {
     axios.get('event/getHandleDTO').then(res => {
       console.log('updatehandleList');
       localStorage.setItem('handleList', JSON.stringify(res.data.data));
       context.commit('getHandleList', res.data.data);
     });
+  },
+  progressList(context) {
+    axios.get('event/getHandleDTO').then(res => {
+      console.log('axios-handleList');
+      localStorage.setItem('handleList', JSON.stringify(res.data.data));
+      console.log(res.data.data);
+      context.commit('getHandleList', res.data.data);
+      context.dispatch('calcuProgressList');
+    });
+  },
+  calcuProgressList(context) {
+    // 从 context 中获取 state
+    const handleList = context.state.handleList;
+    const alarmEvents = context.state.alarmEvents;
+    // 计算进度列表
+    let progressList = [
+      ((handleList.parkNum / alarmEvents.length) * 100).toFixed(0),
+      ((handleList.checkNum / alarmEvents.length) * 100).toFixed(0),
+      ((handleList.flowNum / alarmEvents.length) * 100).toFixed(0),
+      ((handleList.speedNum / alarmEvents.length) * 100).toFixed(0),
+      ((handleList.laneNum / alarmEvents.length) * 100).toFixed(0),
+      ((handleList.environmentNum / alarmEvents.length) * 100).toFixed(0)
+    ];
+    // 提交 mutation 更新 state
+    context.commit('changeProgressList', progressList);
   }
 };
 

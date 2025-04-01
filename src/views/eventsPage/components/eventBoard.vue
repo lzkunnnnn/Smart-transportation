@@ -5,8 +5,8 @@
     <div class="grid-container">
       <div class="grid-item a">
         <a-row class="board-item"><b>事件编号ID:</b> {{ eventBoardInfo.id }}</a-row>
-        <a-row class="board-item"> <b>事件类型:</b> {{ eventBoardInfo.type }}</a-row>
-        <a-row class="board-item"> <b>处理状态:</b> {{ eventBoardInfo.state }}</a-row>
+        <a-row class="board-item"> <b>事件类型:</b> {{ typeTransfor(eventBoardInfo.type) }}</a-row>
+        <a-row class="board-item"> <b>处理状态:</b> {{ stateTransfor(eventBoardInfo.state) }}</a-row>
         <a-row class="board-item"> <b>位置</b> {{ eventBoardInfo.address }}</a-row>
       </div>
       <div class="grid-item b">
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { typeTransfor, stateTransfor } from '@/api/transfor';
 export default {
   name: 'eventBoard',
   props: ['eventBoardInfo'],
@@ -35,10 +36,12 @@ export default {
     return {};
   },
   methods: {
+    typeTransfor,
+    stateTransfor,
     close() {
       this.$emit('close');
     }
-  },
+  }
 };
 </script>
 
@@ -58,13 +61,13 @@ export default {
   }
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 33%);
-    grid-template-areas: 'a b c  ' 'a b c ' 'e e e ';
+    grid-template-columns: repeat(2, 50%);
+    grid-template-areas: 'a b   ' 'a b  ' 'e e  ';
     width: 100%;
     height: 100%;
     .board-item {
       font-size: 15px;
-      margin-bottom: 20px;
+      margin-bottom: 5px;
       width: 100%;
       b {
         display: inline-block;
@@ -74,11 +77,9 @@ export default {
     }
     .event-top {
       font-size: 20px;
-      margin-bottom: 10px;
     }
     .event-bottom {
       font-size: 16px;
-      margin-bottom: 20px;
       height: 80%;
     }
     .text {

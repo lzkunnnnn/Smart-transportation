@@ -3,7 +3,7 @@
     <a-row type="flex" justify="space-around" align="middle" class="rowBox">
       <a-col :span="10" class="gutter-box">
         <a-space :size="8" align="center">
-          <svg-icon icon="waterSystem" :size="50" />
+          <svg-icon icon="monitor" :size="50" />
 
           <div class="textBox">
             <a-statistic
@@ -20,7 +20,7 @@
       </a-col>
       <a-col :span="10" class="gutter-box">
         <a-space :size="8" align="center">
-          <svg-icon icon="smokeSystem" :size="50" />
+          <svg-icon icon="visit" :size="50" />
           <div class="textBox">
             <a-statistic
               :value="$store.state.deviceState.parkNum - $store.state.deviceState.parkNumAbnormal"
@@ -39,7 +39,9 @@
     <a-row type="flex" justify="space-around" align="middle" class="rowBox">
       <a-col :span="10" class="gutter-box">
         <a-space :size="8" align="center">
-          <svg-icon icon="electronicSystem" :size="50" />
+
+          <svg-icon icon="car-front" :size="50" />
+
           <div class="textBox">
             <a-statistic
               :value="$store.state.deviceState.flowNum - $store.state.deviceState.flowNumAbnormal"
@@ -55,7 +57,7 @@
       </a-col>
       <a-col :span="10" class="gutter-box">
         <a-space :size="8" align="center">
-          <svg-icon icon="gasSystem" :size="50" />
+          <svg-icon icon="dashboard" :size="50" />
           <div class="textBox">
             <a-statistic
               :value="$store.state.deviceState.speedNum - $store.state.deviceState.speedNumAbnormal"
@@ -73,7 +75,7 @@
     <a-row type="flex" justify="space-around" align="middle" class="rowBox">
       <a-col :span="10" class="gutter-box">
         <a-space :size="8" align="center">
-          <svg-icon icon="electronicSystem" :size="50" />
+          <svg-icon icon="columns" :size="50" />
           <div class="textBox">
             <a-statistic
               :value="$store.state.deviceState.laneNum - $store.state.deviceState.laneNumAbnormal"
@@ -89,7 +91,9 @@
       </a-col>
       <a-col :span="10" class="gutter-box">
         <a-space :size="8" align="center">
-          <svg-icon icon="gasSystem" :size="50" />
+
+          <svg-icon icon="sun-fill" :size="50" />
+
           <div class="textBox">
             <a-statistic
               :value="$store.state.deviceState.environmentNum - $store.state.deviceState.environmentNumAbnormal"

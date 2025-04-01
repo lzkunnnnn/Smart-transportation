@@ -6,11 +6,13 @@ export function stateTransfor(state) {
     return '🔴待处理';
   } else return '未知';
 }
+
 export function timeTransfor(Time) {
   if (Time == null) {
     return '未知';
   } else return Time.replace('T', ' ').replace(/-/g, '/');
 }
+
 export function levelTransfor(level) {
   if (level == 0) {
     return '一级';
@@ -23,4 +25,21 @@ export function levelTransfor(level) {
   } else {
     return '未知等级';
   }
+}
+
+export function typeTransfor(type) {
+  if (type == 'flow') {
+    return '流量监测';
+  } else if (type == 'speed') {
+    return '区间测速';
+  } else if (type == 'check') {
+    return '卡口摄像';
+  } else if (type == 'park') {
+    return '违停抓拍';
+  } else if (type == 'lane') {
+    return '车道监测';
+  } else if (type == 'environment') {
+    return '环境监测';
+  }
+  return '未知';
 }

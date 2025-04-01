@@ -84,9 +84,9 @@ export default {
           ],
           series: [
             {
-              name: '烟雾',
+              name: '一级',
               type: 'bar',
-              data: [20, 30, 40, 40, 45, 50, 30],
+              data: [2, 3, 4, 4, 4, 5, 3],
               barWidth: '8',
               barGap: '20%',
               type: 'bar',
@@ -111,9 +111,9 @@ export default {
               }
             },
             {
-              name: '电气',
+              name: '二级',
               type: 'bar',
-              data: [30, 40, 50, 50, 55, 60, 40],
+              data: [3, 4, 5, 5, 5, 6, 4],
               barWidth: '8',
               barGap: '20%',
               type: 'bar',
@@ -134,9 +134,9 @@ export default {
               }
             },
             {
-              name: '消防',
+              name: '三级',
               type: 'bar',
-              data: [60, 60, 90, 90, 120, 120, 90],
+              data: [6, 6, 9, 9, 8, 5, 9],
               barWidth: '8',
               barGap: '20%',
               type: 'bar',
@@ -157,9 +157,9 @@ export default {
               }
             },
             {
-              name: '气体',
+              name: '四级',
               type: 'bar',
-              data: [40, 40, 60, 60, 80, 80, 60],
+              data: [4, 4, 6, 5, 4, 7, 6],
               barWidth: '8',
               barGap: '20%',
               type: 'bar',

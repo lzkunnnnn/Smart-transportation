@@ -35,6 +35,7 @@ module.exports = {
     before: !isProd ? require('./mock/mock-server.js') : '',
     proxy: {
       '/api': {
+        /*         target: 'http://localhost:8080', */
         target: 'http://123.57.35.191:8080',
         /*  target:'http://10.172.2.167:8080/', */
         changeOrigin: true

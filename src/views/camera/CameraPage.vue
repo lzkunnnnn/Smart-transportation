@@ -1,9 +1,9 @@
 <template>
-  <div style="display: flex">
-    <a-card>
+  <div style="display: flex; margin-top: 5px">
+    <a-card style="border: none">
       <video :src="videoSource" muted autoplay width="100%" loop crossorigin="anonymous" />
     </a-card>
-    <a-card style="width: 500px">
+    <a-card style="width: 500px; border: none">
       <a-button @click="showModal" style="width: 100%"> 车辆检索</a-button>
       <a-table :columns="columns" :data-source="table_data" :pagination="false">
         <a slot="name" slot-scope="text">{{ text }}</a>
@@ -94,7 +94,7 @@ export default {
           time: '14:00',
           car_type: '小车',
           color: '黑色'
-        },
+        }
       ]
     };
   },

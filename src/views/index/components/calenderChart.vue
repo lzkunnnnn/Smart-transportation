@@ -55,7 +55,7 @@ export default {
             left: 'center',
             top: 'middle',
             cellSize: [38, 38], // 缩小单元格大小
-            range: [ '2025-03'],
+            range: [ '2025-04'],
             //一二三四五六日
             dayLabel: {
               firstDay: 1,

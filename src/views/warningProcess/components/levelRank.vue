@@ -100,7 +100,7 @@ export default {
               },
               itemStyle: {
                 normal: {
-                  color: ' rgb(67, 56, 202)'
+                  color: 'rgb(98, 198, 190)'
                 }
                 // borderColor: '#fff'
               },

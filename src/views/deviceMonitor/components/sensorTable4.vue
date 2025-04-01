@@ -105,7 +105,7 @@ export default {
           }
           a.id = String(a.id).padStart(3, '0');
           a.updateTime = a.updateTime.replace('T', '    ');
-            a.operation="详情"
+          a.operation = '详情';
         });
       });
     },
@@ -129,69 +129,7 @@ export default {
     }
   }
 };
-const data = []; /*
-const data = [
-  {
-    key: '1',
-    id: '001',
-    type: '燃气传感器',
-    status: '🟢运转正常',
-    level: '93',
-    address: '1号楼一层东',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '2',
-    id: '002',
-    type: '燃气传感器',
-    status: '🟢运转正常',
-    level: '56',
-    address: '1号楼二层东',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '3',
-    id: '003',
-    type: '燃气传感器',
-    status: '⚪️离线',
-    level: '43',
-    address: '1号楼三层东',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '4',
-    id: '004',
-    type: '燃气传感器',
-    status: '🟢运转正常',
-    level: '42',
-    address: '1号楼四层东',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '2',
-    id: '005',
-    type: '燃气传感器',
-    status: '🟢运转正常',
-    level: '32',
-    address: '1号楼五层东',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  },
-  {
-    key: '3',
-    id: '006',
-    type: '燃气传感器',
-    status: '🔴通信不畅',
-    level: '18',
-    address: '1号楼地下室',
-    time: '2021-05-11 11:31',
-    operation: '详情'
-  }
-];*/
+const data = [];
 </script>
 <style scoped>
 .table-operations {

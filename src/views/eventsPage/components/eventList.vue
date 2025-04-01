@@ -1,18 +1,27 @@
 <template>
   <div class="container">
-    <a-table :columns="columns" :data-source="$store.state.alarmEvents" @change="handleChange" v-show="!isVisible">
+    <a-table
+      :columns="columns"
+      :pagination="{ pageSize: 5 }"
+      :data-source="$store.state.alarmEvents"
+      @change="handleChange"
+      v-show="!isVisible"
+    >
       <!--       <template v-slot:updateTime="updateTime">
         <span>{{ timeTransfor(updateTime) }}</span>
       </template> -->
-
+      <template v-slot:type="type">
+        <span>{{ typeTransfor(type) }}</span>
+      </template>
       <template v-slot:state="state">
         <span>{{ stateTransfor(state) }}</span>
       </template>
-
+      
       <template v-slot:operation="record">
         <a-button type="default" @click="detail(record)">详情</a-button>
       </template>
     </a-table>
+
     <a-card class="dialog" v-show="isVisible">
       <event-board class="board-line" @close="close()" :eventBoardInfo="eventBoardInfo"></event-board>
     </a-card>
@@ -20,7 +29,7 @@
 </template>
 <script>
 import eventBoard from './eventBoard.vue';
-import { stateTransfor, timeTransfor } from '@/api/transfor.js';
+import { stateTransfor, timeTransfor, typeTransfor } from '@/api/transfor.js';
 export default {
   components: {
     eventBoard
@@ -37,6 +46,7 @@ export default {
   methods: {
     stateTransfor,
     timeTransfor,
+    typeTransfor,
     close() {
       this.isVisible = false;
     },
@@ -95,7 +105,8 @@ export default {
             { text: '环境监测', value: 'environment' }
           ],
           onFilter: (value, record) => record.type.indexOf(value) === 0,
-          sortDirections: ['descend']
+          sortDirections: ['descend'],
+          scopedSlots: { customRender: 'type' }
         },
         {
           title: '事件内容',
@@ -186,6 +197,7 @@ const data = [
   position: relative;
 }
 .container .dialog {
+  border: solid 2px #182030;
   width: 100%;
   height: 100%;
 }
@@ -196,7 +208,7 @@ const data = [
   margin-right: 8px;
 }
 .board-line {
-  height: 600px;
+  height: 400px;
   width: 100%;
 }
 </style>

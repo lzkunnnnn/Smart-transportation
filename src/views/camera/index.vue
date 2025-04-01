@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div style="display: flex; flex-direction: column">
-      <a-card title="Video1" style="width: 100%">
+    <div style="display: flex; flex-direction: column; margin-top: 5px">
+      <a-card title="Video1" style="width: 100%; border: none">
         <video
           @click.once="handleClick"
           src="@/assets/video/video.mp4"
@@ -13,7 +13,7 @@
         />
       </a-card>
       <br />
-      <a-card title="Video2" style="width: 100%">
+      <a-card title="Video2" style="width: 100%; border: none">
         <video src="@/assets/video/video2.mp4" muted autoplay width="100%" loop crossorigin="anonymous" />
       </a-card>
     </div>
@@ -66,7 +66,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {

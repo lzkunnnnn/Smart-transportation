@@ -12,10 +12,29 @@ export default {
     return {};
   },
   mounted() {
-    console.log(this.progressList); // 检查数据格式
     this.$nextTick(() => {
       this.initEchart();
     });
+  },
+  watch: {
+    progressList: {
+      handler(newVal, oldVal) {
+        if (this.myChart) {
+          // 如果图表已经初始化，则更新数据
+          this.myChart.setOption({
+            series: [
+              {
+                data: newVal
+              }
+            ]
+          });
+        } else {
+          // 如果图表未初始化，则初始化图表
+          this.initEchart();
+        }
+      },
+      deep: true // 深度监听，确保数组内部变化也能触发
+    }
   },
   methods: {
     initEchart() {
