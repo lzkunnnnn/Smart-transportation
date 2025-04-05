@@ -3,13 +3,13 @@
     <div class="grid-container header">
       <span class="b">位置</span>
       <span class="c">状态</span>
-      <span class="d">更新时间</span>
+      <span class="d">标题</span>
     </div>
     <vue-seamless-scroll :data="$store.state.alarmEvents" class="seamless-warp" :class-option="classOption">
       <div class="grid-container" v-for="item in $store.state.alarmEvents" :key="item.id">
         <span class="b">{{ item.address }}</span>
         <span class="c">{{ item.alarmType }}</span>
-        <span class="d">{{ item.updateTime }}</span>
+        <span class="d">{{ item.title }}</span>
       </div>
     </vue-seamless-scroll>
   </div>

@@ -90,9 +90,9 @@ export default {
           sortDirections: ['descend']
         },
         {
-          title: '事件内容',
-          dataIndex: 'content',
-          key: 'content',
+          title: '事件标题',
+          dataIndex: 'title',
+          key: 'title',
           ellipsis: true
         },
         {
