@@ -73,19 +73,19 @@ export default {
       cards: [
         {
           id: '900-74',
-          channel: '浙江中略8段',
+          channel: '和兴路1段',
           longitude: 121.4787,
           latitude: 31.2348
         },
         {
           id: '906-27',
-          channel: '广东番町段',
+          channel: '中央大街2段',
           longitude: 121.4872,
           latitude: 31.2331
         },
         {
           id: '907-40',
-          channel: '广东路2段',
+          channel: '征仪路1段',
           longitude: 121.4864,
           latitude: 31.3229
         }
