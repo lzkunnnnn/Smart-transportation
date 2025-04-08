@@ -62,26 +62,6 @@ export const asyncRoutes = [
         }
       },
       {
-        name: 'eventsPage',
-        component: () => import('@/views/eventsPage/index.vue'),
-        path: '/eventsPage',
-        meta: {
-          role: 3,
-          title: '事件管理',
-          icon: 'taskManage'
-        }
-      },
-      {
-        name: 'warningProcess',
-        path: '/warningProcess',
-        component: () => import('@/views/warningProcess/index'),
-        meta: {
-          role: 5,
-          title: '预警处理',
-          icon: 'warningprocess'
-        }
-      },
-      {
         name: '/camera-home',
         path: '/camera-home',
         component: () => import('@/views/camera/CameraHome.vue'),
@@ -122,7 +102,28 @@ export const asyncRoutes = [
             }
           }
         ],
-      }
+      },
+      {
+        name: 'eventsPage',
+        component: () => import('@/views/eventsPage/index.vue'),
+        path: '/eventsPage',
+        meta: {
+          role: 3,
+          title: '事件管理',
+          icon: 'taskManage'
+        }
+      },
+      {
+        name: 'warningProcess',
+        path: '/warningProcess',
+        component: () => import('@/views/warningProcess/index'),
+        meta: {
+          role: 5,
+          title: '预警处理',
+          icon: 'warningprocess'
+        }
+      },
+      
       /*       {
         name: 'correlation',
         path: '/correlation',

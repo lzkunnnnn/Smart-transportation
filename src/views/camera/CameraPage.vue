@@ -2,6 +2,7 @@
   <div style="display: flex; margin-top: 5px">
 
     <a-card style="border: none">
+      <!-- <video src="../../../output.mp4" muted autoplay width="100%" loop crossorigin="anonymous" /> -->
       <video :src="videoSource" muted autoplay width="100%" loop crossorigin="anonymous" />
     </a-card>
 
