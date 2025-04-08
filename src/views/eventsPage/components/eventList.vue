@@ -132,6 +132,11 @@ export default {
           ellipsis: true
         }, */
         {
+          title: ' 预警',
+          dataIndex: 'alarmType',
+          key: 'alarmType'
+        },
+        {
           title: '事件状态',
           dataIndex: 'state',
           key: 'state',

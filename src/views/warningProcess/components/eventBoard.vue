@@ -1,9 +1,10 @@
 <template>
   <div>
     <a-table :columns="columns" :data-source="$store.state.alarmEvents" @change="handleChange">
-      <template v-slot:state="state">
-        <span>{{ stateTransfor(state) }}</span>
+      <template v-slot:type="type">
+        <span>{{ typeTransfor(type) }}</span>
       </template>
+
       <template v-slot:level="record">
         <span>{{ levelTransfor(record) }}</span>
       </template>
@@ -12,6 +13,9 @@
       </template>
       <template v-slot:handleTime="handleTime">
         <span>{{ timeTransfor(handleTime) }}</span>
+      </template>
+      <template v-slot:state="state">
+        <span>{{ stateTransfor(state) }}</span>
       </template>
       <template v-slot:operation="record">
         <a-button type="primary" @click="handle(record)">处理</a-button>
@@ -23,7 +27,7 @@
 </template>
 <script>
 import axios from 'axios';
-import { timeTransfor, stateTransfor, levelTransfor } from '@/api/transfor';
+import { timeTransfor, stateTransfor, levelTransfor, typeTransfor } from '@/api/transfor';
 export default {
   data() {
     return {
@@ -39,6 +43,7 @@ export default {
     levelTransfor,
     stateTransfor,
     timeTransfor,
+    typeTransfor,
     handle(record) {
       axios({
         method: 'get',
@@ -111,13 +116,16 @@ export default {
           dataIndex: 'type',
           key: 'type',
           filters: [
-            { text: '烟感系统', value: 'smog' },
-            { text: '电气系统', value: 'elec' },
-            { text: '消防系统', value: 'water' },
-            { text: '红外系统', value: 'gas' }
+            { text: '违停抓拍', value: 'park' },
+            { text: '卡口摄像', value: 'check' },
+            { text: '流量监控', value: 'flow' },
+            { text: '区间测速', value: 'speed' },
+            { text: '车道检测', value: 'lane' },
+            { text: '环境监测', value: 'environment' }
           ],
           onFilter: (value, record) => record.type.indexOf(value) === 0,
-          sortDirections: ['descend']
+          sortDirections: ['descend'],
+          scopedSlots: { customRender: 'type' }
         },
         {
           title: '状态',

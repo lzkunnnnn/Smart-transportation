@@ -2,41 +2,6 @@
   <div class="main-box">
     <a-row :gutter="12" class="main-row-box">
       <a-col :span="8" class="quarter-div">
-        <div class="card-item card-item-one">
-          <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="alert" :size="20" />报警数</a-space>
-          </div>
-          <div class="all-count">
-            <count-to :startVal="0" :endVal="$store.state.handleList.alarmNum" :duration="2200" />
-            <span class="suffix"></span>
-          </div>
-        </div>
-      </a-col>
-      <a-col :span="8" class="quarter-div">
-        <div class="card-item card-item-two">
-          <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="bell" :size="20" />预警数</a-space>
-          </div>
-          <div class="all-count">
-            <count-to :startVal="0" :endVal="$store.state.handleList.earlyAlarmNum" :duration="2200" />
-            <span class="suffix"></span>
-          </div>
-        </div>
-      </a-col>
-      <a-col :span="8" class="quarter-div">
-        <div class="card-item card-item-three">
-          <div class="card-title">
-            <a-space :size="8"> <svg-icon icon="complete" :size="20" />已处理</a-space>
-          </div>
-          <div class="all-count">
-            <count-to :startVal="0" :endVal="$store.state.handleList.handledNum" :duration="2200" />
-            <span class="suffix"></span>
-          </div>
-        </div>
-      </a-col>
-    </a-row>
-    <a-row :gutter="12" class="main-row-box">
-      <a-col :span="8" class="quarter-div">
         <div class="card-item card-item-four">
           <div class="card-title">
             <a-space :size="8"> <svg-icon icon="fault" :size="20" />设备数</a-space>
@@ -65,6 +30,41 @@
           </div>
           <div class="all-count">
             <count-to :startVal="0" :endVal="$store.state.deviceState.abnormalSensorNum" :duration="2200" />
+            <span class="suffix"></span>
+          </div>
+        </div>
+      </a-col>
+    </a-row>
+    <a-row :gutter="12" class="main-row-box">
+      <a-col :span="8" class="quarter-div">
+        <div class="card-item card-item-one">
+          <div class="card-title">
+            <a-space :size="8"> <svg-icon icon="alert" :size="20" />报警数</a-space>
+          </div>
+          <div class="all-count">
+            <count-to :startVal="0" :endVal="$store.state.handleList.alarmNum" :duration="2200" />
+            <span class="suffix"></span>
+          </div>
+        </div>
+      </a-col>
+      <a-col :span="8" class="quarter-div">
+        <div class="card-item card-item-two">
+          <div class="card-title">
+            <a-space :size="8"> <svg-icon icon="bell" :size="20" />预警数</a-space>
+          </div>
+          <div class="all-count">
+            <count-to :startVal="0" :endVal="$store.state.handleList.earlyAlarmNum" :duration="2200" />
+            <span class="suffix"></span>
+          </div>
+        </div>
+      </a-col>
+      <a-col :span="8" class="quarter-div">
+        <div class="card-item card-item-three">
+          <div class="card-title">
+            <a-space :size="8"> <svg-icon icon="complete" :size="20" />已处理</a-space>
+          </div>
+          <div class="all-count">
+            <count-to :startVal="0" :endVal="$store.state.handleList.handledNum" :duration="2200" />
             <span class="suffix"></span>
           </div>
         </div>
