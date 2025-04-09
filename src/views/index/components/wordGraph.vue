@@ -44,39 +44,27 @@ export default {
               },
               data: [
                 {
-                  name: '电梯',
+                  name: '摄像头故障',
                   value: Math.random(0.1, 1) * 70
                 },
                 {
-                  name: '烟雾传感器报警',
+                  name: '十字路口堵塞',
                   value: Math.random(0.1, 1) * 70
                 },
                 {
-                  name: '商铺明火',
+                  name: '车流高峰期预警',
                   value: Math.random(0.1, 1) * 70
                 },
                 {
-                  name: '电压不稳',
+                  name: '违规停车',
                   value: Math.random(0.1, 1) * 70
                 },
                 {
-                  name: '燃气泄漏',
+                  name: '红绿灯故障',
                   value: Math.random(0.1, 1) * 70
                 },
                 {
-                  name: '水压不稳',
-                  value: Math.random(0.1, 1) * 70
-                },
-                {
-                  name: '电流过载',
-                  value: Math.random(0.1, 1) * 70
-                },
-                {
-                  name: '传感器故障',
-                  value: Math.random(0.1, 1) * 70
-                },
-                {
-                  name: '烟雾浓度',
+                  name: '车辆超载',
                   value: Math.random(0.1, 1) * 70
                 },
                 {
@@ -89,6 +77,10 @@ export default {
                 },
                 {
                   name: '车祸',
+                  value: Math.random(0.1, 1) * 70
+                },
+                {
+                  name: '超速',
                   value: Math.random(0.1, 1) * 70
                 }
               ]

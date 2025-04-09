@@ -9,7 +9,7 @@
           <a-avatar slot="avatar" :src="item.imgUrl" />
           <div slot="description">
             {{ item.description }}
-            <div style="margin-top:8px">{{ item.time }}</div>
+            <div style="margin-top: 8px">{{ item.time }}</div>
           </div>
         </a-list-item-meta>
       </a-list-item>
@@ -38,7 +38,7 @@ export default {
         {
           user: '不知名用户',
           description: '加油，赶紧写完,相信自己。',
-          imgUrl: require('../../../../../assets/nav/user.gif'),
+          imgUrl: require('../../../../../assets/nav/user.jpg'),
           time: '2020-11-11  11:11:11'
         },
         {
@@ -56,7 +56,7 @@ export default {
         {
           user: '黑虎阿福',
           description: '乌鸦坐飞机，龙卷风摧毁停车场',
-          imgUrl: require('../../../../../assets/nav/user.gif'),
+          imgUrl: require('../../../../../assets/nav/user.jpg'),
           time: '2020-10-18  14:12:16'
         }
       ]

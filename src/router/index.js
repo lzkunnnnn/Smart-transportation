@@ -77,7 +77,7 @@ export const asyncRoutes = [
             component: () => import('@/views/camera/index.vue'),
             meta: {
               role: 6,
-              title: '摄像',
+              title: '监控摄像',
               icon: 'webGl'
             }
           },
@@ -87,7 +87,7 @@ export const asyncRoutes = [
             component: () => import('@/views/camera/CameraPage.vue'),
             meta: {
               role: 6,
-              title: '摄像详细',
+              title: '详细摄像',
               icon: 'webGl'
             }
           },
@@ -97,7 +97,7 @@ export const asyncRoutes = [
             component: () => import('@/views/camera/AccidentDetection.vue'),
             meta: {
               role: 6,
-              title: '事件处理',
+              title: '事故处理',
               icon: 'webGl'
             }
           }
