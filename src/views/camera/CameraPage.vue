@@ -52,6 +52,9 @@
             </a-card>
             <a-card title="检索的图片">
               <img v-if="responseImage" :src="responseImage" style="max-width: 300px; max-height: 300px" alt="检索图片" />
+              <span v-if="responseImage" style="margin-top: 8px; color: white; font-size: 12px">
+                 2025-04-11 14:06
+              </span>
             </a-card>
           </div>
         </div>
@@ -128,13 +131,13 @@ export default {
       table_data: [
         {
           key: '1',
-          time: '14:00',
+          time: '14:04',
           car_type: '轿车',
           color: '黑色'
         },
         {
           key: '2',
-          time: '14:01',
+          time: '14:04',
           car_type: '轿车',
           color: '白色'
         },
@@ -146,50 +149,68 @@ export default {
         },
         {
           key: '4',
-          time: '14:10',
+          time: '14:05',
           car_type: '公交车',
           color: '橙色'
         },
         {
           key: '5',
-          time: '14:20',
+          time: '14:06',
           car_type: '卡车',
           color: '黑色'
         },
         {
           key: '6',
-          time: '14:25',
+          time: '14:06',
           car_type: '轿车',
           color: '黑色'
         },
         {
           key: '7',
-          time: '14:30',
+          time: '14:06',
           car_type: '轿车',
           color: '黑色'
         },
         {
           key: '8',
-          time: '14:35',
+          time: '14:07',
           car_type: '轿车',
           color: '黑色'
         },
         {
           key: '9',
-          time: '14:36',
+          time: '14:07',
           car_type: '轿车',
           color: '红色'
         },
         {
           key: '10',
-          time: '14:40',
+          time: '14:07',
           car_type: '轿车',
           color: '黄色'
         },
         {
           key: '11',
-          time: '14:42',
+          time: '14:08',
           car_type: '轿车',
+          color: '白色'
+        },
+         {
+          key: '12',
+          time: '14:08',
+          car_type: '轿车',
+          color: '黑色'
+        },
+         {
+          key: '13',
+          time: '14:09',
+          car_type: '轿车',
+          color: '红色'
+        },
+         {
+          key: '14',
+          time: '14:09',
+          car_type: '客车',
           color: '白色'
         }
       ],
