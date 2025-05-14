@@ -20,6 +20,7 @@ export default {
       this.myChart = echarts.init(this.$refs.calenderChart);
       const start = '2025-01-01';
       const end = '2025-12-31';
+      const month = '2025-' + String(new Date().getMonth() + 1).padStart(2, '0');
       const dateList = this.generateDateList(start, end);
       const heatmapData = [];
       const dateData = []; // 用于显示日期的几号
@@ -55,7 +56,7 @@ export default {
             left: 'center',
             top: 'middle',
             cellSize: [38, 38], // 缩小单元格大小
-            range: [ '2025-04'],
+            range: [month],
             //一二三四五六日
             dayLabel: {
               firstDay: 1,

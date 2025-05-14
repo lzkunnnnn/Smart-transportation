@@ -2,7 +2,15 @@
   <div class="body-container">
     <div class="left-container">
       <a-card class="vague">
+        <div class="btn-box" key="button" :class="{ 'fade-out': showBtn, 'fade-in': !showBtn }">
+          <div class="box" @click="toggleForm">
+            <span class="ripple"></span>
+            <p>事件管理</p>
+          </div>
+        </div>
         <a-form
+          v-show="showForm"
+          key="form"
           ref="formRef"
           class="grid-container"
           :model="formEvent"
@@ -57,9 +65,12 @@
             </a-form-item>
 
             <a-form-item label="内容">
-              <a-input v-model:value="formEvent.content" type="textarea" style="width: 100%; max-height: 105px" />
+              <a-input
+                v-model:value="formEvent.content"
+                type="textarea"
+                style="width: 100%; height: 105px; max-height: 105px"
+              />
             </a-form-item>
-
           </div>
 
           <div class="right">
@@ -80,9 +91,17 @@
               </a-radio-group>
             </a-form-item>
 
-            <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
+            <a-form-item :wrapper-col="{ span: 14, offset: 4 }" style="display: flex; justify-content: space-between">
               <a-button type="primary" @click="addEvent()">提交</a-button>
               <a-button style="margin-left: 10px" @click="resetForm()">重置</a-button>
+              <a-button
+                style="margin-left: 10px"
+                @click="
+                  showBtn = false;
+                  showForm = false;
+                "
+                >返回</a-button
+              >
             </a-form-item>
           </div>
         </a-form>
@@ -120,9 +139,10 @@ export default {
     relationChart,
     progressChart
   },
-
   data() {
     return {
+      showForm: false,
+      showBtn: false,
       labelCol: { span: 4 }, // 标签占 4 列
       wrapperCol: { span: 20 }, // 表单控件占 20 列
       items: [],
@@ -154,9 +174,27 @@ export default {
     this.pageInit();
   },
   methods: {
+    toggleForm() {
+      this.showBtn = !this.showBtn;
+      setTimeout(() => {
+        this.showForm = true;
+      }, 300);
+    },
     pageInit() {
       this.$store.dispatch('getAlarmEvents');
       this.$store.dispatch('progressList');
+      let box = document.querySelector('.box');
+      box.onmouseenter = function (event) {
+        let ripple = box.querySelector('.ripple');
+        ripple.classList.add('animation');
+        ripple.style.width = this.offsetWidth + 'px';
+        ripple.style.height = this.offsetWidth + 'px';
+        ripple.style.top = -(this.offsetHeight - event.offsetY) + 'px';
+        ripple.style.left = -(this.offsetWidth / 2 - event.offsetX) + 'px';
+        setTimeout(() => {
+          ripple.classList.remove('animation');
+        }, 500);
+      };
     },
     handleNameChange(selectedName) {
       const selectedSensor = this.sensors.find(s => s.name === selectedName);
@@ -171,6 +209,7 @@ export default {
         this.formEvent.sensor.name = selectedSensor.name;
       }
     },
+    //表单提交
     async addEvent() {
       axios
         .get('event/addEvent', {
@@ -189,35 +228,20 @@ export default {
           this.$message.success('提交成功！');
           localStorage.clear('alarmEvents');
           this.pageInit();
-          this.formEvent = {
-            sensor: { name: undefined, address: undefined },
-            title: undefined,
-            level: undefined,
-            type: undefined,
-            alarmType: undefined,
-            content: ''
-          };
-          this.sensors = [];
+          this.resetFormData();
         })
         .catch(error => {
           this.$message.error('提交失败');
-          this.formEvent = {
-            sensor: { name: undefined, address: undefined },
-            title: undefined,
-            level: undefined,
-            type: undefined,
-            alarmType: undefined,
-            content: ''
-          };
-          this.sensors = [];
+          this.resetFormData();
         });
     },
-    getSensors() {
-      axios.get('sensor/sensors', { params: { type: this.formEvent.type } }).then(res => {
-        this.sensors = res.data.data;
-      });
-    },
+    //重置表单
     resetForm() {
+      this.resetFormData();
+      this.$message.success('重置成功');
+      this.pageInit();
+    },
+    resetFormData() {
       this.formEvent = {
         sensor: { name: undefined, address: undefined },
         title: undefined,
@@ -227,8 +251,11 @@ export default {
         content: ''
       };
       this.sensors = [];
-      this.$message.success('重置成功');
-      this.pageInit();
+    },
+    getSensors() {
+      axios.get('sensor/sensors', { params: { type: this.formEvent.type } }).then(res => {
+        this.sensors = res.data.data;
+      });
     },
     initData(eventId) {
       axios.get('event/getEvent', { params: { id: eventId } }).then(res => {
@@ -252,6 +279,87 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+//渐变按钮start
+.btn-box {
+  position: relative;
+  height: 100%;
+  padding: 0;
+}
+.box {
+  position: absolute;
+  width: 100%;
+  z-index: 20;
+  aspect-ratio: 5/1; // 宽度:高度 = 4:3
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  user-select: none;
+  margin: 5px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  p {
+    color: white;
+    font-size: 50px;
+    margin: 0;
+  }
+}
+
+.box:nth-of-type(1) {
+  background: linear-gradient(150deg, rgb(251, 122, 8), rgb(240, 47, 31));
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    z-index: 1;
+  }
+}
+
+.ripple {
+  display: block;
+  position: absolute;
+  border-radius: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+}
+
+.animation {
+  animation: ripple 0.5s ease-in;
+}
+
+@keyframes ripple {
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+//渐变按钮end
+
 .body-container {
   width: 100%;
   padding: 10px;
@@ -268,11 +376,13 @@ export default {
     .vague {
       height: 240px;
       border: none;
+      position: relative;
       overflow: hidden;
       .grid-container {
         display: grid;
         grid-template-columns: 30% 30% 40%;
         width: 100%;
+        margin: 5px;
       }
     }
     .table-list {

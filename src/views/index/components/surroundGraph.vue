@@ -70,15 +70,12 @@ export default {
                 }
               },
               data: [
-                { name: '电梯', value: 50, x: 100, y: 100 },
-                { name: '烟雾传感器报警', value: 68, x: 200, y: 100 },
-                { name: '商铺明火', value: 46, x: 300, y: 150 },
-                { name: '电压不稳', value: 50, x: 400, y: 130 },
-                { name: '燃气泄漏', value: 60, x: 500, y: 140 },
-                { name: '水压不稳', value: 45, x: 600, y: 180 },
-                { name: '电流过载', value: 55, x: 700, y: 90 },
-                { name: '传感器故障', value: 65, x: 800, y: 70 },
-                { name: '烟雾浓度', value: 67, x: 480, y: 60 },
+                { name: '逆行', value: 50, x: 100, y: 100 },
+                { name: '超速', value: 68, x: 200, y: 100 },
+                { name: '违规停车', value: 46, x: 300, y: 150 },
+                { name: '车辆故障', value: 50, x: 400, y: 130 },
+                { name: '危险驾驶', value: 65, x: 800, y: 70 },
+                { name: '监控故障', value: 67, x: 480, y: 60 },
                 { name: '交通拥堵', value: 56, x: 400, y: 210 },
                 { name: '追尾', value: 58, x: 200, y: 200 },
                 { name: '车祸', value: 48, x: 300, y: 200 }
