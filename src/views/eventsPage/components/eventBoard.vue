@@ -24,6 +24,9 @@
         <a-row class="text event-bottom"> {{ eventBoardInfo.content }} </a-row>
       </div>
     </div>
+  <div style="display: grid; justify-content: center;"> 
+    <a-button type="primary" @click="goToMonitor()" class="close">查看监控</a-button>
+  </div>
   </div>
 </template>
 
@@ -40,7 +43,12 @@ export default {
     stateTransfor,
     close() {
       this.$emit('close');
+    },
+
+    goToMonitor() {
+      this.$router.push('/accident-detection');
     }
+
   }
 };
 </script>

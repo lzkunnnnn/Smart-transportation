@@ -37,7 +37,7 @@
           <div class="accountImg">
             <img :src="previewsImg.url" alt="" :style="previewsImg.img" />
           </div>
-          <a-button type="primary" icon="upload" style="margin-left:150px" @click="saveHeadImg"> 保存头像 </a-button>
+          <a-button type="primary" icon="upload" style="margin-left: 150px" @click="saveHeadImg"> 保存头像 </a-button>
         </a-col>
       </a-row>
     </a-modal>
@@ -50,7 +50,7 @@ export default {
   components: { VueCropper },
   data() {
     return {
-      imgUrl: require('../../../assets/nav/user.gif'),
+      imgUrl: require('../../../assets/nav/user.jpg'),
       loading: false,
       modalShow: false,
       option: {

@@ -1,9 +1,9 @@
 <template>
   <a-dropdown class="navUser-wrppaer">
     <div>
-      <img src="../../../assets/nav/user.gif" class="userImg" alt="" />
+      <img src="../../../assets/nav/user.jpg" class="userImg" alt="" />
       <span class="userTitle">{{ accountInfo.username }}</span>
-      <a-icon type="caret-down" style="margin-left:5px" />
+      <a-icon type="caret-down" style="margin-left: 5px" />
     </div>
 
     <a-menu slot="overlay">

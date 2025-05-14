@@ -32,7 +32,7 @@
         placeholder="请输入个人技能"
         :maxTagCount="3"
         allowClear
-        :default-value="accountFrom.skill?accountFrom.skill.split(','):undefined"
+        :default-value="accountFrom.skill ? accountFrom.skill.split(',') : undefined"
         @change="changeSkill"
       >
         <a-select-option v-for="item in SKILL_LIST" :key="item.label">
@@ -41,12 +41,8 @@
       </a-select>
     </a-form-model-item>
     <a-form-item class="text-center">
-      <a-button type="primary" @click="updateValue" :loading="loading">
-        提交
-      </a-button>
-      <a-button style="margin-left:25px" @click="resetFrom">
-        取消
-      </a-button>
+      <a-button type="primary" @click="updateValue" :loading="loading"> 提交 </a-button>
+      <a-button style="margin-left: 25px" @click="resetFrom"> 取消 </a-button>
     </a-form-item>
   </a-form-model>
 </template>
@@ -80,7 +76,7 @@ export default {
   },
   mounted() {
     this.accountFrom = this.accountInfo;
-    this.accountFrom.imgUrl = require('../../../../assets/nav/user.gif');
+    this.accountFrom.imgUrl = require('../../../../assets/nav/user.jpg');
   },
   methods: {
     changeSkill(key) {

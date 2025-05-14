@@ -70,15 +70,16 @@ export default {
                 }
               },
               data: [
-                { name: '逆行', value: 50, x: 100, y: 100 },
-                { name: '超速', value: 68, x: 200, y: 100 },
-                { name: '违规停车', value: 46, x: 300, y: 150 },
-                { name: '车辆故障', value: 50, x: 400, y: 130 },
-                { name: '危险驾驶', value: 65, x: 800, y: 70 },
-                { name: '监控故障', value: 67, x: 480, y: 60 },
+                { name: '十字路口堵塞', value: 50, x: 400, y: 130 },
+                { name: '摄像头故障', value: 60, x: 500, y: 140 },
+                { name: '违规停车', value: 45, x: 600, y: 180 },
+                { name: '车流高峰期预警', value: 55, x: 700, y: 90 },
+                { name: '车辆超载', value: 65, x: 800, y: 70 },
+                { name: '红绿灯故障', value: 67, x: 480, y: 60 },
                 { name: '交通拥堵', value: 56, x: 400, y: 210 },
                 { name: '追尾', value: 58, x: 200, y: 200 },
-                { name: '车祸', value: 48, x: 300, y: 200 }
+                { name: '车祸', value: 48, x: 300, y: 200 },
+                { name: '超速', value: 48, x: 300, y: 200 }
               ]
             }
           ],

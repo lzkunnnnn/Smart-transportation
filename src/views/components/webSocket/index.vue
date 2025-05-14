@@ -4,7 +4,7 @@
       <div class="status">
         {{ socketStatus }}
       </div>
-      <scroll-bar style="width:100%;height:400px;padding:6px 0 15px" ref="scrollBar">
+      <scroll-bar style="width: 100%; height: 400px; padding: 6px 0 15px" ref="scrollBar">
         <p class="text-center">{{ newsList[newsList.length - 1].date }}</p>
         <div
           class="list-item"
@@ -25,9 +25,7 @@
           <a-textarea :rows="3" @change="changeText" :value="textValue" />
         </a-form-item>
         <a-form-item>
-          <a-button html-type="submit" type="primary" @click="sendNews">
-            发送
-          </a-button>
+          <a-button html-type="submit" type="primary" @click="sendNews"> 发送 </a-button>
         </a-form-item>
       </div>
     </a-comment>
@@ -41,12 +39,12 @@ export default {
     return {
       errorTimes: 0,
       websock: null,
-      imgUrl: require('../../../assets/nav/user.gif'),
+      imgUrl: require('../../../assets/nav/user.jpg'),
       socketStatus: 'webSocket连接断开',
       newsList: [
         {
           user: 'admin',
-          imgUrl: require('../../../assets/nav/user.gif'),
+          imgUrl: require('../../../assets/nav/user.jpg'),
           message: 'hello',
           date: '2020-12-27 15:36:24'
         },
@@ -105,7 +103,7 @@ export default {
       this.websock.send(message);
       this.newsList.push({
         user: 'admin',
-        imgUrl: require('../../../assets/nav/user.gif'),
+        imgUrl: require('../../../assets/nav/user.jpg'),
         message: message,
         date: moment().format('YYYY-MM-DD HH:mm:ss')
       });
